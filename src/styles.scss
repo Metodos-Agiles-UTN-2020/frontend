@@ -1,1 +1,342 @@
-/* You can add global styles to this file, and also import other style files */
+.ui.color-sfe.button,
+.ui.color-sfe.buttons .button {
+	background-color: #00c18b;
+	color: #fff;
+	text-shadow: none;
+	background-image: none
+}
+
+.ui.color-sfe.button {
+	-webkit-box-shadow: 0 0 0 0 rgba(34, 36, 38, .15) inset;
+	box-shadow: 0 0 0 0 rgba(34, 36, 38, .15) inset
+}
+
+.ui.color-sfe.button:hover,
+.ui.color-sfe.buttons .button:hover {
+	background-color: #009c95;
+	color: #fff;
+	text-shadow: none
+}
+
+.ui.color-sfe.button:focus,
+.ui.color-sfe.buttons .button:focus {
+	background-color: #008c86;
+	color: #fff;
+	text-shadow: none
+}
+
+.ui.color-sfe.button:active,
+.ui.color-sfe.buttons .button:active {
+	background-color: #00827c;
+	color: #fff;
+	text-shadow: none
+}
+
+.ui.color-sfe.active.button,
+.ui.color-sfe.button .active.button:active,
+.ui.color-sfe.buttons .active.button,
+.ui.color-sfe.buttons .active.button:active {
+	background-color: #009c95;
+	color: #fff;
+	text-shadow: none
+}
+
+.ui.basic.color-sfe.button,
+.ui.basic.color-sfe.buttons .button {
+	-webkit-box-shadow: 0 0 0 1px #00c18b inset!important;
+	box-shadow: 0 0 0 1px #00c18b inset!important;
+	color: #00c18b!important
+}
+
+.ui.basic.color-sfe.button:hover,
+.ui.basic.color-sfe.buttons .button:hover {
+	background: 0 0!important;
+	-webkit-box-shadow: 0 0 0 1px #009c95 inset!important;
+	box-shadow: 0 0 0 1px #009c95 inset!important;
+	color: #009c95!important
+}
+
+.ui.basic.color-sfe.button:focus,
+.ui.basic.color-sfe.buttons .button:focus {
+	background: 0 0!important;
+	-webkit-box-shadow: 0 0 0 1px #008c86 inset!important;
+	box-shadow: 0 0 0 1px #008c86 inset!important;
+	color: #009c95!important
+}
+
+.ui.basic.color-sfe.active.button,
+.ui.basic.color-sfe.buttons .active.button {
+	background: 0 0!important;
+	-webkit-box-shadow: 0 0 0 1px #009c95 inset!important;
+	box-shadow: 0 0 0 1px #009c95 inset!important;
+	color: #00827c!important
+}
+
+.ui.basic.color-sfe.button:active,
+.ui.basic.color-sfe.buttons .button:active {
+	-webkit-box-shadow: 0 0 0 1px #00827c inset!important;
+	box-shadow: 0 0 0 1px #00827c inset!important;
+	color: #00827c!important
+}
+
+.ui.buttons:not(.vertical)>.basic.color-sfe.button:not(:first-child) {
+	margin-left: -1px
+}
+
+.ui.inverted.color-sfe.button,
+.ui.inverted.color-sfe.buttons .button {
+	background-color: transparent;
+	-webkit-box-shadow: 0 0 0 2px #6dffff inset!important;
+	box-shadow: 0 0 0 2px #6dffff inset!important;
+	color: #6dffff
+}
+
+.ui.inverted.color-sfe.button.active,
+.ui.inverted.color-sfe.button:active,
+.ui.inverted.color-sfe.button:focus,
+.ui.inverted.color-sfe.button:hover,
+.ui.inverted.color-sfe.buttons .button.active,
+.ui.inverted.color-sfe.buttons .button:active,
+.ui.inverted.color-sfe.buttons .button:focus,
+.ui.inverted.color-sfe.buttons .button:hover {
+	-webkit-box-shadow: none!important;
+	box-shadow: none!important;
+	color: rgba(0, 0, 0, .6)
+}
+
+.ui.inverted.color-sfe.button:hover,
+.ui.inverted.color-sfe.buttons .button:hover {
+	background-color: #54ffff
+}
+
+.ui.inverted.color-sfe.button:focus,
+.ui.inverted.color-sfe.buttons .button:focus {
+	background-color: #4ff
+}
+
+.ui.inverted.color-sfe.active.button,
+.ui.inverted.color-sfe.buttons .active.button {
+	background-color: #54ffff
+}
+
+.ui.inverted.color-sfe.button:active,
+.ui.inverted.color-sfe.buttons .button:active {
+	background-color: #3affff
+}
+
+.ui.inverted.color-sfe.basic.button,
+.ui.inverted.color-sfe.basic.buttons .button,
+.ui.inverted.color-sfe.buttons .basic.button {
+	background-color: transparent;
+	-webkit-box-shadow: 0 0 0 2px rgba(255, 255, 255, .5) inset!important;
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, .5) inset!important;
+	color: #fff!important
+}
+
+.ui.inverted.color-sfe.basic.button:hover,
+.ui.inverted.color-sfe.basic.buttons .button:hover,
+.ui.inverted.color-sfe.buttons .basic.button:hover {
+	-webkit-box-shadow: 0 0 0 2px #54ffff inset!important;
+	box-shadow: 0 0 0 2px #54ffff inset!important;
+	color: #6dffff!important
+}
+
+.ui.inverted.color-sfe.basic.button:focus,
+.ui.inverted.color-sfe.basic.buttons .button:focus {
+	-webkit-box-shadow: 0 0 0 2px #4ff inset!important;
+	box-shadow: 0 0 0 2px #4ff inset!important;
+	color: #6dffff!important
+}
+
+.ui.inverted.color-sfe.basic.active.button,
+.ui.inverted.color-sfe.basic.buttons .active.button,
+.ui.inverted.color-sfe.buttons .basic.active.button {
+	-webkit-box-shadow: 0 0 0 2px #54ffff inset!important;
+	box-shadow: 0 0 0 2px #54ffff inset!important;
+	color: #6dffff!important
+}
+
+.ui.inverted.color-sfe.basic.button:active,
+.ui.inverted.color-sfe.basic.buttons .button:active,
+.ui.inverted.color-sfe.buttons .basic.button:active {
+	-webkit-box-shadow: 0 0 0 2px #3affff inset!important;
+	box-shadow: 0 0 0 2px #3affff inset!important;
+	color: #6dffff!important
+}
+
+.ui.color-sfe.header {
+	color: #00c18b!important
+}
+
+a.ui.color-sfe.header:hover {
+	color: #009c95!important
+}
+
+.ui.color-sfe.dividing.header {
+	border-bottom: 2px solid #00c18b
+}
+
+.ui.inverted.color-sfe.header {
+	color: #6dffff!important
+}
+
+a.ui.inverted.color-sfe.header:hover {
+	color: #54ffff!important
+}
+
+i.color-sfe.icon {
+	color: #00c18b!important
+}
+
+i.inverted.color-sfe.icon {
+	color: #6dffff!important
+}
+
+i.inverted.bordered.color-sfe.icon,
+i.inverted.circular.color-sfe.icon {
+	background-color: #00c18b!important;
+	color: #fff!important
+}
+
+.ui.color-sfe.label,
+.ui.color-sfe.labels .label {
+	background-color: #00c18b!important;
+	border-color: #00c18b!important;
+	color: #fff!important
+}
+
+.ui.color-sfe.labels .label:hover,
+a.ui.color-sfe.label:hover {
+	background-color: #009c95!important;
+	border-color: #009c95!important;
+	color: #fff!important
+}
+
+.ui.color-sfe.corner.label,
+.ui.color-sfe.corner.label:hover {
+	background-color: transparent!important
+}
+
+.ui.color-sfe.ribbon.label {
+	border-color: #00827c!important
+}
+
+.ui.basic.color-sfe.label {
+	background: none #fff!important;
+	color: #00c18b!important;
+	border-color: #00c18b!important
+}
+
+.ui.basic.color-sfe.labels a.label:hover,
+a.ui.basic.color-sfe.label:hover {
+	background-color: #fff!important;
+	color: #009c95!important;
+	border-color: #009c95!important
+}
+
+.ui.color-sfe.segment:not(.inverted) {
+	border-top: 2px solid #00c18b!important
+}
+
+.ui.inverted.color-sfe.segment {
+	background-color: #00c18b!important;
+	color: #fff!important
+}
+
+.ui.grid>.row>.color-sfe.column,
+.ui.grid>.color-sfe.column,
+.ui.grid>.color-sfe.row {
+	background-color: #00c18b!important;
+	color: #fff
+}
+.ui.menu .color-sfe.active.item,
+.ui.color-sfe.menu .active.item {
+	border-color: #00c18b!important;
+	color: #00c18b!important
+}
+
+.ui.inverted.menu .color-sfe.active.item,
+.ui.inverted.color-sfe.menu {
+	background-color: #00c18b
+}
+
+.ui.inverted.color-sfe.menu .item:before {
+	background-color: rgba(34, 36, 38, .1)
+}
+
+.ui.inverted.color-sfe.menu .active.item {
+	background-color: rgba(0, 0, 0, .1)!important
+}
+
+.ui.color-sfe.message {
+	background-color: #e1f7f7;
+	color: #10a3a3;
+	-webkit-box-shadow: 0 0 0 1px #10a3a3 inset, 0 0 0 0 transparent;
+	box-shadow: 0 0 0 1px #10a3a3 inset, 0 0 0 0 transparent
+}
+
+.ui.color-sfe.message .header {
+	color: #0e8c8c
+}
+
+.ui.color-sfe.table {
+	border-top: .2em solid #00c18b
+}
+
+.ui.inverted.color-sfe.table {
+	background-color: #00c18b!important;
+	color: #fff!important
+}
+
+.ui.cards>.color-sfe.card,
+.ui.color-sfe.card,
+.ui.color-sfe.cards>.card {
+	-webkit-box-shadow: 0 0 0 1px #d4d4d5, 0 2px 0 0 #00c18b, 0 1px 3px 0 #d4d4d5;
+	box-shadow: 0 0 0 1px #d4d4d5, 0 2px 0 0 #00c18b, 0 1px 3px 0 #d4d4d5
+}
+
+.ui.cards>.color-sfe.card:hover,
+.ui.color-sfe.card:hover,
+.ui.color-sfe.cards>.card:hover {
+	-webkit-box-shadow: 0 0 0 1px #d4d4d5, 0 2px 0 0 #009c95, 0 1px 3px 0 #bcbdbd;
+	box-shadow: 0 0 0 1px #d4d4d5, 0 2px 0 0 #009c95, 0 1px 3px 0 #bcbdbd
+}
+
+.ui.statistics .color-sfe.statistic>.value,
+.ui.color-sfe.statistic>.value,
+.ui.color-sfe.statistics .statistic>.value {
+	color: #00c18b
+}
+
+.ui.inverted.color-sfe.statistic>.value,
+.ui.inverted.color-sfe.statistics .statistic>.value,
+.ui.statistics .inverted.color-sfe.statistic>.value {
+	color: #6dffff
+}
+
+.ui.color-sfe.progress .bar {
+	background-color: #00c18b
+}
+
+.ui.color-sfe.inverted.progress .bar {
+	background-color: #6dffff
+}
+
+.ui.grid>.row>.black.column,
+.ui.grid>.row>.blue.column,
+.ui.grid>.row>.brown.column,
+.ui.grid>.row>.green.column,
+.ui.grid>.row>.grey.column,
+.ui.grid>.row>.olive.column,
+.ui.grid>.row>.orange.column,
+.ui.grid>.row>.pink.column,
+.ui.grid>.row>.purple.column,
+.ui.grid>.row>.red.column,
+.ui.grid>.row>.color-sfe.column,
+.ui.grid>.row>.violet.column,
+.ui.grid>.row>.yellow.column {
+	margin-top: -1rem;
+	margin-bottom: -1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem
+}
