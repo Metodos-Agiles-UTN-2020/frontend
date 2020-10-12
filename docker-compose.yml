@@ -7,6 +7,6 @@ services:
         image: metodosagilesutn2020/frontend
         restart: always
         ports:
-            - "30000:80"
+            - "4200:80"
         env_file:
             - ./config.env
