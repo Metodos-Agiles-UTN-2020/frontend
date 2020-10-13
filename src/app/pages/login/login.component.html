@@ -5,21 +5,26 @@
 		<h2 class="ui color-sfe image header">
 			Sistema Único de Registro de Licencias de Conducir
 		</h2>
-		<form class="ui large form">
+		<form #lForm="ngForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(lForm)" class="ui large form">
 			<div class="ui segment">
+				<div class="ui negative message" *ngIf="this.loginError && this.loginError.length > 0">
+					<div class="header">
+						{{ this.loginError }}
+					</div>
+				</div>
 				<div class="field">
 					<div class="ui left icon input">
 						<i class="user icon"></i>
-						<input type="text" name="email" placeholder="Nombre de usuario">
+						<input type="text" formControlName="username" name="username" placeholder="Nombre de usuario">
 					</div>
 				</div>
 				<div class="field">
 					<div class="ui left icon input">
 						<i class="lock icon"></i>
-						<input type="password" name="password" placeholder="Contraseña">
+						<input type="password" formControlName="password" name="password" placeholder="Contraseña">
 					</div>
 				</div>
-				<div class="ui fluid large color-sfe submit button">Iniciar sesión</div>
+				<button type="submit" [disabled]="!loginForm.valid" class="ui fluid large color-sfe submit button">Iniciar sesión</button>
 			</div>
 
 			<div class="ui error message"></div>
