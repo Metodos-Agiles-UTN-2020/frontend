@@ -1,0 +1,44 @@
+<h4 class="ui dividing header">Información del titular</h4>
+<form #atForm="ngForm" [formGroup]="altaTitularForm" (ngSubmit)="onSubmit(atForm)" class="ui form">
+    <div class="field">
+        <label>Nombre</label>
+        <div class="two fields">
+            <div class="field">
+                <input type="text" formControlName="nombreTitular" name="nombreTitular" placeholder="Nombre">
+            </div>
+            <div class="field">
+                <input type="text" formControlName="apellidoTitular" name="apellidoTitular" placeholder="Apellido">
+            </div>
+        </div>
+    </div>
+
+    <div class="field">
+        <label>Domicilio</label>
+        <div class="field">
+            <input type="text" formControlName="domicilioTitular" name="domicilioTitular" placeholder="Dirección">
+        </div>
+    </div>
+
+    <div class="two fields">
+        <div class="field">
+            <label>Tipo de Documento</label>
+            <select class="ui fluid dropdown" formControlName="tipoDocumentoTitular">
+                <option value="{{ enum.value }}" *ngFor="let enum of TipoDocumento | keyvalue">{{ enum.key }}</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Número de Documento</label>
+            <div class="field">
+                <input type="number" formControlName="nroDocumentoTitular" name="nroDocumentoTitular"
+                    placeholder="Número de Documento">
+            </div>
+        </div>
+    </div>
+
+    <div class="ui calendar field">
+        <label>Fecha de Nacimiento</label>
+        <div class="ui input left icon">
+            <input type="date" formControlName="fechaNacimientoTitular" name="fechaNacimientoTitular">
+        </div>
+    </div>
+</form>
