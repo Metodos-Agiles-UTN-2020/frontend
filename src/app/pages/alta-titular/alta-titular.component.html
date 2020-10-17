@@ -4,10 +4,10 @@
         <label>Nombre</label>
         <div class="two fields">
             <div class="field">
-                <input type="text" formControlName="nombreTitular" name="nombreTitular" placeholder="Nombre">
+                <input type="text" formControlName="nombre" name="nombre" placeholder="Nombre">
             </div>
             <div class="field">
-                <input type="text" formControlName="apellidoTitular" name="apellidoTitular" placeholder="Apellido">
+                <input type="text" formControlName="apellido" name="apellido" placeholder="Apellido">
             </div>
         </div>
     </div>
@@ -15,21 +15,21 @@
     <div class="field">
         <label>Domicilio</label>
         <div class="field">
-            <input type="text" formControlName="domicilioTitular" name="domicilioTitular" placeholder="Dirección">
+            <input type="text" formControlName="domicilio" name="domicilio" placeholder="Dirección">
         </div>
     </div>
 
     <div class="two fields">
         <div class="field">
             <label>Tipo de Documento</label>
-            <select class="ui fluid dropdown" formControlName="tipoDocumentoTitular">
+            <select class="ui fluid dropdown" formControlName="tipoDocumento">
                 <option value="{{ enum.value }}" *ngFor="let enum of TipoDocumento | keyvalue">{{ enum.key }}</option>
             </select>
         </div>
         <div class="field">
             <label>Número de Documento</label>
             <div class="field">
-                <input type="number" formControlName="nroDocumentoTitular" name="nroDocumentoTitular"
+                <input type="number" formControlName="nroDocumento" name="nroDocumento"
                     placeholder="Número de Documento">
             </div>
         </div>
@@ -38,7 +38,33 @@
     <div class="ui calendar field">
         <label>Fecha de Nacimiento</label>
         <div class="ui input left icon">
-            <input type="date" formControlName="fechaNacimientoTitular" name="fechaNacimientoTitular">
+            <input type="date" formControlName="fechaNacimiento" name="fechaNacimiento">
         </div>
     </div>
+
+    <div class="two fields">
+        <div class="field">
+            <label>Grupo Sanguíneo</label>
+            <select class="ui fluid dropdown" formControlName="grupoSanguineo">
+                <option value="{{ enum.value }}" *ngFor="let enum of GrupoSanguineo | keyvalue">{{ enum.key }}</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Factor RH</label>
+            <select class="ui fluid dropdown" formControlName="factorRh">
+                <option value="{{ enum.key }}" *ngFor="let enum of FactorRH | keyvalue">{{ enum.value }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="field">
+        <label>Clase Solicitada</label>
+        <select class="ui fluid dropdown" formControlName="claseLicencia">
+            <option value="{{ enum.key }}" *ngFor="let enum of ClaseLicencia | keyvalue">{{ enum.value }}</option>
+        </select>
+    </div>
+
+    <input type="submit" value="Enviar"/>
+
+
 </form>
