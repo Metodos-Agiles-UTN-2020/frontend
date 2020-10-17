@@ -35,20 +35,21 @@
         </div>
     </div>
 
-    <div class="ui calendar field">
-        <label>Fecha de Nacimiento</label>
-        <div class="ui input left icon">
-            <input type="date" formControlName="fechaNacimiento" name="fechaNacimiento">
+    <div class="three fields">
+        <div class="ui calendar field">
+            <label>Fecha de Nacimiento</label>
+            <div class="ui input left icon">
+                <input type="date" formControlName="fechaNacimiento" name="fechaNacimiento">
+            </div>
         </div>
-    </div>
 
-    <div class="two fields">
         <div class="field">
             <label>Grupo Sanguíneo</label>
             <select class="ui fluid dropdown" formControlName="grupoSanguineo">
                 <option value="{{ enum.value }}" *ngFor="let enum of GrupoSanguineo | keyvalue">{{ enum.key }}</option>
             </select>
         </div>
+
         <div class="field">
             <label>Factor RH</label>
             <select class="ui fluid dropdown" formControlName="factorRh">
@@ -64,7 +65,7 @@
         </select>
     </div>
 
-    <input type="submit" value="Enviar"/>
+    <input type="submit" value="Enviar" />
 
 
 </form>
