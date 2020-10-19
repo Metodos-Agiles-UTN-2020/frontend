@@ -1,5 +1,5 @@
-<h4 class="ui dividing header">Información del titular</h4>
 <form #atForm="ngForm" [formGroup]="altaTitularForm" (ngSubmit)="onSubmit(atForm)" class="ui form">
+    <h4 class="ui dividing header">Información del titular</h4>
     <div class="field">
         <label>Nombre</label>
         <div class="two fields">
@@ -58,6 +58,27 @@
         </div>
     </div>
 
+    <div class="ui form">
+        <div class="inline fields">
+            <label>Donante de Órganos:</label>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" name="condicionDonante" id="Sí" formControlName="condicionDonante" value="Sí">
+                    <label for="Sí">Sí</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" name="condicionDonante" id="No" formControlName="condicionDonante" value="No">
+                    <label for="No">No</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <h4 class="ui dividing header">Información de Licencia</h4>
     <div class="field">
         <label>Clase Solicitada</label>
         <select class="ui fluid dropdown" formControlName="claseLicencia">
@@ -65,7 +86,7 @@
         </select>
     </div>
 
-    <input type="submit" value="Enviar" />
+    <input class="ui button" type="submit" value="Enviar" />
 
 
 </form>

@@ -32,6 +32,8 @@ export class AltaTitularComponent implements OnInit {
       'fechaNacimiento': new FormControl(null, Validators.required),
       'grupoSanguineo': new FormControl(null, Validators.required),
       'factorRh': new FormControl(null, Validators.required),
+      'condicionDonante': new FormControl(null, Validators.required),
+      //'foto': new FormControl(null, Validators.required),
       'claseLicencia': new FormControl(null, Validators.required),
     });
 
@@ -46,10 +48,13 @@ export class AltaTitularComponent implements OnInit {
   get fechaNacimiento() { return this.altaTitularForm.get('fechaNacimiento'); }
   get grupoSanguineo() { return this.altaTitularForm.get('grupoSanguineo'); }
   get factorRH() { return this.altaTitularForm.get('factorRh'); }
+  get condicionDonante() { return this.altaTitularForm.get('condicionDonante'); }
+  //get foto() { return this.altaTitularForm.get('foto'); }
   get claseLicencia() { return this.altaTitularForm.get('claseLicencia'); }
 
   onSubmit(f: NgForm) {
     console.log(f.value);
   }
+
 
 }
