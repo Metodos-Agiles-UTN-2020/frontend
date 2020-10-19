@@ -14,11 +14,11 @@ export class ApiService {
 		this.token = null;
 	}
 
-	get(url: string, data: any) {
+	get(url: string) {
 		return this.http.get<HttpResponse<any>>(url, {
 			withCredentials: true,
 			observe: 'response',
-			headers: this.token ? new HttpHeaders('Authorization: ' + this.token) : {}
+			headers: this.getToken() ? new HttpHeaders('Authorization: ' + this.getToken()) : {}
 		});
 	}
 
@@ -26,12 +26,16 @@ export class ApiService {
 		return this.http.post<HttpResponse<any>>(url, data, {
 			withCredentials: true,
 			observe: 'response',
-			headers: this.token ? new HttpHeaders('Authorization: ' + this.token) : {}
+			headers: this.getToken() ? new HttpHeaders('Authorization: ' + this.getToken()) : {}
 		});
+	}
+
+	getToken() {
+		return this.token == null ? localStorage.getItem('token') : this.token;
 	}
 
 	setToken(token : string) {
 		this.token = token;
-		console.log("token seteado: " + token);
+		localStorage.setItem('token', token);
 	}
 }

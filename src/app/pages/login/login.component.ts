@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { ApiService } from '../../services/api/api.service';
+import { Router, CanActivate, ActivatedRouteSnapshot } from "@angular/router";
 
 @Component({
 	selector: 'app-login',
@@ -17,9 +18,13 @@ export class LoginComponent implements OnInit {
 	constructor(
 		private authService: AuthService,
 		private apiService: ApiService,
+		private router : Router,
 	) { }
 
 	ngOnInit(): void {
+		if(this.authService.isUserLoggedIn()) {
+			this.router.navigate(['/']);
+		}
 
 		this.loginForm = new FormGroup({
 			'username': new FormControl(null, Validators.required),
@@ -31,8 +36,6 @@ export class LoginComponent implements OnInit {
 	get password() { return this.loginForm.get('password'); }
 
 	onSubmit(f : NgForm) {
-		console.log(f.value);
-
 		this.authService.checkLogin(f.value).subscribe(
 			result => {
 				this.loginError = "";
