@@ -1,0 +1,10 @@
+.allowed-types {
+	margin: 10px 5px;
+	font-size: 12px;
+}
+
+@media screen and (max-width:767px) { 
+	.photo-selector .twelve {
+		width: 100%;
+	}
+}
