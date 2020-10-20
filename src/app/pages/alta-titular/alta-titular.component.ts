@@ -22,7 +22,7 @@ export class AltaTitularComponent implements OnInit {
 	public ClaseLicencia = ClaseLicencia;
 
 	public altaTitularForm: FormGroup;
-	public selectedImage : string;
+	public selectedImage : string | ArrayBuffer;
 
 	constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) { }
 
@@ -61,14 +61,11 @@ export class AltaTitularComponent implements OnInit {
 		console.log(f.value);
 	}
 
-	onFileSelected(event) {
+	onFileSelected(event: any) {
 		let reader = new FileReader();
 		let file = event.target.files[0];
 
-		console.log(reader);
-
 		reader.readAsDataURL(file);
-
 		reader.onload = () => {
 			this.selectedImage = reader.result;
 			this.altaTitularForm.controls['foto'].setValue(this.selectedImage);
