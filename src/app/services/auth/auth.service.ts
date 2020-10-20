@@ -44,4 +44,9 @@ export class AuthService {
 	setLoggedInUser(userData : any) {
 		this.userData = userData;
 	}
+
+	cleanUpUser() {
+		this.userData = null;
+		this.apiService.clearToken();
+	}
 }
