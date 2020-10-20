@@ -1,2 +1,9 @@
+<app-header *ngIf="this.router.url !== '/login' && !this.loading"></app-header>
+
 <router-outlet *ngIf="!this.loading"></router-outlet>
-<div *ngIf="this.loading">Cargando...</div>
+
+<app-footer *ngIf="this.router.url !== '/login' && !this.loading"></app-footer>
+
+<div class="ui active dimmer" *ngIf="this.loading">
+	<div class="ui massive text loader">Cargando...</div>
+</div>

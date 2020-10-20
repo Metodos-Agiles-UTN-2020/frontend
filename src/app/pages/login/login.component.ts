@@ -37,11 +37,22 @@ export class LoginComponent implements OnInit {
 
 	onSubmit(f : NgForm) {
 		this.authService.checkLogin(f.value).subscribe(
-			result => {
-				this.loginError = "";
-				this.apiService.setToken(result.headers.get('token'));
+			loginResult => {
+				this.apiService.setToken(loginResult.headers.get('token'));
 
-				// aca hacemos algo si loguea bien
+				this.authService.getLoggedInUser().subscribe(
+					userResult => {
+						this.authService.setLoggedInUser(userResult.body);
+
+						this.loginError = "";
+						this.router.navigate(['/']);
+					},
+					error => {
+						this.loginError = "Ha ocurrido un error. Intente nuevamente.";
+						this.authService.cleanUpUser();
+					}
+				);
+
 			},
 			error => {
 				if(error.status == 403) {

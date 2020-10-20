@@ -11,10 +11,9 @@ import { UserData } from '../../classes/UserData/user-data';
 })
 
 export class AuthService {
-
 	private loginUrl : string;
 	private userUrl : string;
-	private userData : UserData;
+	public userData : UserData;
 
 	constructor(
 		private router: Router,
@@ -33,7 +32,7 @@ export class AuthService {
 		return this.apiService.get(this.userUrl);
 	}
 
-	getCurrentUser() : UserData {
+	public get currentUser() : UserData {
 		return this.userData;
 	}
 
