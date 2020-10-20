@@ -76,10 +76,15 @@
 		</div>
 	</div>
 
-	<input type="file" (change)="onFileSelected($event)" />
+	<input type="file" (change)="onFileSelected($event)" accept="image/x-png,image/gif,image/jpeg" />
 	<input type="hidden" formControlName="foto" />
 
 	<img src="{{ this.selectedImage }}" />
+
+	<div class="field">
+		<label>Observaciones</label>
+		<textarea name="observaciones" formControlName="observaciones"></textarea>
+	</div>
 
 	<h4 class="ui dividing header">Información de Licencia</h4>
 	<div class="field">
@@ -89,5 +94,5 @@
 		</select>
 	</div>
 
-	<input class="ui button" type="submit" value="Enviar" />
+	<input [disabled]="!altaTitularForm.valid" class="ui button" type="submit" value="Enviar" />
 </form>

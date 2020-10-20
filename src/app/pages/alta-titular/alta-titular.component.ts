@@ -1,13 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators, AbstractControl, ReactiveFormsModule, FormBuilder } from '@angular/forms';
-
 import { TipoDocumento } from '../../enums/tipo-documento.enum';
 import { GrupoSanguineo } from '../../enums/grupo-sanguineo.enum';
 import { FactorRH } from '../../enums/factor-rh.enum';
 import { ClaseLicencia } from 'src/app/enums/clase-licencia.enum';
-import { ReadVarExpr } from '@angular/compiler';
-import { resolve, Resolver } from 'dns';
-import { rejects } from 'assert';
+import { HelpersService } from '../../services/helpers/helpers.service';
 
 @Component({
 	selector: 'app-alta-titular',
@@ -22,9 +19,11 @@ export class AltaTitularComponent implements OnInit {
 	public ClaseLicencia = ClaseLicencia;
 
 	public altaTitularForm: FormGroup;
-	public selectedImage : string | ArrayBuffer;
+	public selectedImage;
 
-	constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) { }
+	constructor(
+		private helpersService : HelpersService
+	) { }
 
 	ngOnInit(): void {
 		this.altaTitularForm = new FormGroup({
@@ -39,6 +38,7 @@ export class AltaTitularComponent implements OnInit {
 			'condicionDonante': new FormControl(null, Validators.required),
 			'foto': new FormControl(null, Validators.required),
 			'tipoLicencia': new FormControl(null, Validators.required),
+			'observaciones': new FormControl(null),
 		});
 
 		this.altaTitularForm.controls['tipoDocumento'].setValue("DNI");
@@ -67,8 +67,10 @@ export class AltaTitularComponent implements OnInit {
 
 		reader.readAsDataURL(file);
 		reader.onload = () => {
-			this.selectedImage = reader.result;
-			this.altaTitularForm.controls['foto'].setValue(this.selectedImage);
+			this.helpersService.compressImage(reader.result, 250, 250).then(compressed => {
+				this.selectedImage = compressed;
+				this.altaTitularForm.controls['foto'].setValue(this.selectedImage);
+			});
 		}
 
 		reader.onerror = () => this.selectedImage = null;
