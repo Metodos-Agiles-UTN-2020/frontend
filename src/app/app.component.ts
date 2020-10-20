@@ -13,10 +13,11 @@ export class AppComponent {
 	title = 'frontend';
 
 	public loading : boolean;
+	public currentRoute : string;
 
 	constructor(
 		private apiService : ApiService,
-		private router : Router,
+		public router : Router,
 		private authService: AuthService,
 	) {
 		this.loading = true;
@@ -43,5 +44,7 @@ export class AppComponent {
 			this.router.navigate(['/login']);
 			this.loading = false;
 		}
+
+		this.currentRoute = this.router.url;
 	}
 }
