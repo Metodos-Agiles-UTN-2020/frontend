@@ -30,7 +30,11 @@ export class AppComponent {
 			this.authService.getLoggedInUser().subscribe(
 				result => {
 					this.authService.setLoggedInUser(result.body);
-					this.router.navigate(['/']);
+
+					if(this.router.url == '/login') {
+						this.router.navigate(['/']);
+					}
+					
 					this.loading = false;
 				},
 				error => {
