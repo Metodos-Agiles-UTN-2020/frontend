@@ -10,77 +10,70 @@ import { resolve, Resolver } from 'dns';
 import { rejects } from 'assert';
 
 @Component({
-  selector: 'app-alta-titular',
-  templateUrl: './alta-titular.component.html',
-  styleUrls: ['./alta-titular.component.scss']
+	selector: 'app-alta-titular',
+	templateUrl: './alta-titular.component.html',
+	styleUrls: ['./alta-titular.component.scss']
 })
 export class AltaTitularComponent implements OnInit {
 
-  public TipoDocumento = TipoDocumento;
-  public GrupoSanguineo = GrupoSanguineo;
-  public FactorRH = FactorRH;
-  public ClaseLicencia = ClaseLicencia;
+	public TipoDocumento = TipoDocumento;
+	public GrupoSanguineo = GrupoSanguineo;
+	public FactorRH = FactorRH;
+	public ClaseLicencia = ClaseLicencia;
 
-  public altaTitularForm: FormGroup;
+	public altaTitularForm: FormGroup;
+	public selectedImage : string;
 
-  constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) { }
+	constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) { }
 
-  ngOnInit(): void {
-    this.altaTitularForm = new FormGroup({
-      'nombre': new FormControl(null, Validators.required),
-      'apellido': new FormControl(null, Validators.required),
-      'domicilio': new FormControl(null, Validators.required),
-      'tipoDocumento': new FormControl(null, Validators.required),
-      'nroDocumento': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+')]),
-      'fechaNacimiento': new FormControl(null, Validators.required),
-      'grupoSanguineo': new FormControl(null, Validators.required),
-      'factorRh': new FormControl(null, Validators.required),
-      'condicionDonante': new FormControl(null, Validators.required),
-      'foto': new FormControl(null, Validators.required),
-      'claseLicencia': new FormControl(null, Validators.required),
-    });
+	ngOnInit(): void {
+		this.altaTitularForm = new FormGroup({
+			'nombre': new FormControl(null, Validators.required),
+			'apellido': new FormControl(null, Validators.required),
+			'domicilio': new FormControl(null, Validators.required),
+			'tipoDocumento': new FormControl(null, Validators.required),
+			'nroDocumento': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+')]),
+			'fechaNacimiento': new FormControl(null, Validators.required),
+			'grupoSanguineo': new FormControl(null, Validators.required),
+			'factorRh': new FormControl(null, Validators.required),
+			'condicionDonante': new FormControl(null, Validators.required),
+			'foto': new FormControl(null, Validators.required),
+			'tipoLicencia': new FormControl(null, Validators.required),
+		});
 
-    this.altaTitularForm.controls['tipoDocumento'].setValue("DNI");
-  }
+		this.altaTitularForm.controls['tipoDocumento'].setValue("DNI");
+		this.selectedImage = null;
+	}
 
-  get nombre() { return this.altaTitularForm.get('nombre'); }
-  get apellidoTitular() { return this.altaTitularForm.get('apellido'); }
-  get domicilio() { return this.altaTitularForm.get('domicilio'); }
-  get tipoDocumento() { return this.altaTitularForm.get('tipoDocumento'); }
-  get nroDocumento() { return this.altaTitularForm.get('nroDocumento'); }
-  get fechaNacimiento() { return this.altaTitularForm.get('fechaNacimiento'); }
-  get grupoSanguineo() { return this.altaTitularForm.get('grupoSanguineo'); }
-  get factorRH() { return this.altaTitularForm.get('factorRh'); }
-  get condicionDonante() { return this.altaTitularForm.get('condicionDonante'); }
-  get foto() { return this.altaTitularForm.get('foto'); }
-  get claseLicencia() { return this.altaTitularForm.get('claseLicencia'); }
+	get nombre() { return this.altaTitularForm.get('nombre'); }
+	get apellidoTitular() { return this.altaTitularForm.get('apellido'); }
+	get domicilio() { return this.altaTitularForm.get('domicilio'); }
+	get tipoDocumento() { return this.altaTitularForm.get('tipoDocumento'); }
+	get nroDocumento() { return this.altaTitularForm.get('nroDocumento'); }
+	get fechaNacimiento() { return this.altaTitularForm.get('fechaNacimiento'); }
+	get grupoSanguineo() { return this.altaTitularForm.get('grupoSanguineo'); }
+	get factorRH() { return this.altaTitularForm.get('factorRh'); }
+	get condicionDonante() { return this.altaTitularForm.get('condicionDonante'); }
+	get foto() { return this.altaTitularForm.get('foto'); }
+	get tipoLicencia() { return this.altaTitularForm.get('tipoLicencia'); }
 
-  onSubmit(f: NgForm) {
-    console.log(f.value);
-  }
+	onSubmit(f: NgForm) {
+		console.log(f.value);
+	}
 
-  onFileSelected(event) {
-    let reader = new FileReader();
-    let file = event.target.files[0];
-    reader.readAsDataURL(file);
-    
-  
-    reader.onload = function () {
-      console.log(reader.result);
-      //altaTitularForm.get("foto").setValue(reader.result);
-    }    
+	onFileSelected(event) {
+		let reader = new FileReader();
+		let file = event.target.files[0];
 
-    //console.log(reader.result);
-  
-    reader.onerror = function (error) {
-      console.log('Error: ');
-    };
- 
+		console.log(reader);
 
+		reader.readAsDataURL(file);
 
-  }
+		reader.onload = () => {
+			this.selectedImage = reader.result;
+			this.altaTitularForm.controls['foto'].setValue(this.selectedImage);
+		}
 
-
+		reader.onerror = () => this.selectedImage = null;
+	}
 }
-
-

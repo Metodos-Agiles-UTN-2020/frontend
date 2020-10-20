@@ -1,93 +1,93 @@
 <form #atForm="ngForm" [formGroup]="altaTitularForm" (ngSubmit)="onSubmit(atForm)" class="ui form">
-    <h4 class="ui dividing header">Información del titular</h4>
-    <div class="field">
-        <label>Nombre</label>
-        <div class="two fields">
-            <div class="field">
-                <input type="text" formControlName="nombre" name="nombre" placeholder="Nombre">
-            </div>
-            <div class="field">
-                <input type="text" formControlName="apellido" name="apellido" placeholder="Apellido">
-            </div>
-        </div>
-    </div>
+	<h4 class="ui dividing header">Información del titular</h4>
+	<div class="field">
+		<label>Nombre</label>
+		<div class="two fields">
+			<div class="field">
+				<input type="text" formControlName="nombre" name="nombre" placeholder="Nombre">
+			</div>
+			<div class="field">
+				<input type="text" formControlName="apellido" name="apellido" placeholder="Apellido">
+			</div>
+		</div>
+	</div>
 
-    <div class="field">
-        <label>Domicilio</label>
-        <div class="field">
-            <input type="text" formControlName="domicilio" name="domicilio" placeholder="Dirección">
-        </div>
-    </div>
+	<div class="field">
+		<label>Domicilio</label>
+		<div class="field">
+			<input type="text" formControlName="domicilio" name="domicilio" placeholder="Dirección">
+		</div>
+	</div>
 
-    <div class="two fields">
-        <div class="field">
-            <label>Tipo de Documento</label>
-            <select class="ui fluid dropdown" formControlName="tipoDocumento">
-                <option value="{{ enum.value }}" *ngFor="let enum of TipoDocumento | keyvalue">{{ enum.key }}</option>
-            </select>
-        </div>
-        <div class="field">
-            <label>Número de Documento</label>
-            <div class="field">
-                <input type="number" formControlName="nroDocumento" name="nroDocumento"
-                    placeholder="Número de Documento">
-            </div>
-        </div>
-    </div>
+	<div class="two fields">
+		<div class="field">
+			<label>Tipo de Documento</label>
+			<select class="ui fluid dropdown" formControlName="tipoDocumento">
+				<option value="{{ enum.value }}" *ngFor="let enum of TipoDocumento | keyvalue">{{ enum.key }}</option>
+			</select>
+		</div>
+		<div class="field">
+			<label>Número de Documento</label>
+			<div class="field">
+				<input type="number" formControlName="nroDocumento" name="nroDocumento"
+				placeholder="Número de Documento">
+			</div>
+		</div>
+	</div>
 
-    <div class="three fields">
-        <div class="ui calendar field">
-            <label>Fecha de Nacimiento</label>
-            <div class="ui input left icon">
-                <input type="date" formControlName="fechaNacimiento" name="fechaNacimiento">
-            </div>
-        </div>
+	<div class="three fields">
+		<div class="ui calendar field">
+			<label>Fecha de Nacimiento</label>
+			<div class="ui input left icon">
+				<input type="date" formControlName="fechaNacimiento" name="fechaNacimiento">
+			</div>
+		</div>
 
-        <div class="field">
-            <label>Grupo Sanguíneo</label>
-            <select class="ui fluid dropdown" formControlName="grupoSanguineo">
-                <option value="{{ enum.value }}" *ngFor="let enum of GrupoSanguineo | keyvalue">{{ enum.key }}</option>
-            </select>
-        </div>
+		<div class="field">
+			<label>Grupo Sanguíneo</label>
+			<select class="ui fluid dropdown" formControlName="grupoSanguineo">
+				<option value="{{ enum.value }}" *ngFor="let enum of GrupoSanguineo | keyvalue">{{ enum.key }}</option>
+			</select>
+		</div>
 
-        <div class="field">
-            <label>Factor RH</label>
-            <select class="ui fluid dropdown" formControlName="factorRh">
-                <option value="{{ enum.key }}" *ngFor="let enum of FactorRH | keyvalue">{{ enum.value }}</option>
-            </select>
-        </div>
-    </div>
+		<div class="field">
+			<label>Factor RH</label>
+			<select class="ui fluid dropdown" formControlName="factorRh">
+				<option value="{{ enum.key }}" *ngFor="let enum of FactorRH | keyvalue">{{ enum.value }}</option>
+			</select>
+		</div>
+	</div>
 
-    <div class="ui form">
-        <div class="inline fields">
-            <label>Donante de Órganos:</label>
-            <div class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" name="condicionDonante" id="Sí" formControlName="condicionDonante" value="Sí">
-                    <label for="Sí">Sí</label>
-                </div>
-            </div>
-            <div class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" name="condicionDonante" id="No" formControlName="condicionDonante" value="No">
-                    <label for="No">No</label>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="ui form">
+		<div class="inline fields">
+			<label>Donante de Órganos:</label>
+			<div class="field">
+				<div class="ui radio checkbox">
+					<input type="radio" name="condicionDonante" id="Sí" formControlName="condicionDonante" value="Sí">
+					<label for="Sí">Sí</label>
+				</div>
+			</div>
+			<div class="field">
+				<div class="ui radio checkbox">
+					<input type="radio" name="condicionDonante" id="No" formControlName="condicionDonante" value="No">
+					<label for="No">No</label>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<input type="file" (change)="onFileSelected($event)" />
+	<input type="hidden" formControlName="foto" />
 
-    <input type="file" (change)="onFileSelected($event)" formControlName="foto" />
+	<img src="{{ this.selectedImage }}" />
 
-    <h4 class="ui dividing header">Información de Licencia</h4>
-    <div class="field">
-        <label>Clase Solicitada</label>
-        <select class="ui fluid dropdown" formControlName="claseLicencia">
-            <option value="{{ enum.key }}" *ngFor="let enum of ClaseLicencia | keyvalue">{{ enum.value }}</option>
-        </select>
-    </div>
+	<h4 class="ui dividing header">Información de Licencia</h4>
+	<div class="field">
+		<label>Clase Solicitada</label>
+		<select class="ui fluid dropdown" formControlName="tipoLicencia">
+			<option value="{{ enum.key }}" *ngFor="let enum of ClaseLicencia | keyvalue">{{ enum.value }}</option>
+		</select>
+	</div>
 
-    <input class="ui button" type="submit" value="Enviar" />
-
-
+	<input class="ui button" type="submit" value="Enviar" />
 </form>
