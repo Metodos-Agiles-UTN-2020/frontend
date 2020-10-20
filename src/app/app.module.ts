@@ -7,11 +7,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SuiModule } from 'ng2-semantic-ui';
 import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { HeaderComponent } from './interface/header/header.component';
+import { FooterComponent } from './interface/footer/footer.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		LoginComponent
+		LoginComponent,
+		DashboardComponent,
+		HeaderComponent,
+		FooterComponent
 	],
 
 	imports: [
