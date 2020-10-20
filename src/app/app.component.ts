@@ -29,9 +29,12 @@ export class AppComponent {
 			this.authService.getLoggedInUser().subscribe(
 				result => {
 					this.authService.setLoggedInUser(result.body);
+					this.router.navigate(['/']);
 					this.loading = false;
 				},
 				error => {
+					this.authService.cleanUpUser();
+					this.router.navigate(['/login']);
 					this.loading = false;
 				}
 			);

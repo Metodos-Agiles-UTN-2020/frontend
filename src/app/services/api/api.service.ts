@@ -38,4 +38,9 @@ export class ApiService {
 		this.token = token;
 		localStorage.setItem('token', token);
 	}
+
+	clearToken(token : string) {
+		this.token = null;
+		localStorage.removeItem('token');
+	}
 }
