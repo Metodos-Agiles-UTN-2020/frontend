@@ -2,12 +2,12 @@
 name: TaskCard
 about: Plantilla para la carga de TaskCards
 title: 'Task: [nombre de la tarea]'
-labels: feature, frontend, TaskCard
+labels: TaskCard, feature, frontend
 assignees: ''
 
 ---
 
-**Número de hisoria:** numero de historia a la que corresponde la tarea
+**Número de historia:** numero de historia a la que corresponde la tarea
 **Task points:** puntos estimados
 
 **Descripción**
