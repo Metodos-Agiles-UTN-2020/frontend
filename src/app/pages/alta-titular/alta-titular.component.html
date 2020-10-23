@@ -42,7 +42,7 @@
 			<div class="ui calendar field">
 				<label>Fecha de Nacimiento</label>
 				<div class="ui input left">
-					<input type="date" formControlName="fechaNacimiento" name="fechaNacimiento">
+					<input type="date" formControlName="fechaNacimiento" name="fechaNacimiento" id="calendar">
 				</div>
 			</div>
 
@@ -85,7 +85,7 @@
 				<input type="file" (change)="onFileSelected($event)" accept="image/x-png,image/gif,image/jpeg" />
 				<input type="hidden" formControlName="foto" />
 
-				<p class="allowed-types">Tipos de archivos permitidos: png, jpg, gif.</p>
+				<p class="allowed-types">Tipos de archivos permitidos: PNG, JPG, GIF.</p>
 			</div>
 			<div class="two wide field">
 				<img width="150px" height="150px" *ngIf="this.selectedImage" src="{{ this.selectedImage }}" />
