@@ -1,0 +1,65 @@
+<div class="ui main text container">
+	<h1 class="ui header">Buscar licencias</h1>
+
+	<form class="ui stacked segment form" #blForm="ngForm" [formGroup]="buscarLicenciasForm" (ngSubmit)="onSubmit(blForm)">
+		<div class="fields">
+			<div class="five wide field">
+				<label>Nombre</label>
+				<input type="text" formControlName="nombre" name="nombre">
+			</div>
+			<div class="five wide field">
+				<label>Apellido</label>
+				<input type="text" formControlName="apellido" name="apellido">
+			</div>
+			<div class="seven wide field">
+				<label>Grupo Sanguíneo</label>
+				<div class="two fields">
+					<div class="field">
+						<select class="ui fluid search dropdown" formControlName="grupoSanguineo" name="grupoSanguineo">
+							<option value="12">December</option>
+						</select>
+					</div>
+					<div class="field">
+						<select class="ui fluid search dropdown" formControlName="factorRh" name="factorRh">
+							<option value="12">December</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="three wide field">
+				<label>&nbsp;</label>
+				<div class="field">
+					<div class="ui checkbox">
+						<input id="donante" type="checkbox" tabindex="0" class="hidden" formControlName="donante" name="donante">
+						<label for="donante">Donante</label>
+					</div>
+				</div>
+			</div>
+			<div class="four wide field">
+				<label>&nbsp;</label>
+				<div class="ui button right floated" tabindex="0">Buscar</div>
+			</div>
+		</div>
+	</form>
+
+	<table class="ui single line table stackable">
+		<thead>
+			<tr>
+				<th>Nro. licencia</th>
+				<th>Apellido y nombre</th>
+				<th>DNI</th>
+				<th>Clase</th>
+				<th>Fecha de expiración</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let licencia of this.getLicencias()">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
