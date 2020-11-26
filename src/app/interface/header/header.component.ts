@@ -19,8 +19,22 @@ export class HeaderComponent implements OnInit {
 
 	getUserName() {
 		let curUser = this.authService.currentUser;
-
 		return curUser == null ? "" : curUser.username;
+	}
+
+	getName() {
+		let curUser = this.authService.currentUser;
+		return curUser == null ? "" : curUser.nombre;
+	}
+
+	getSurname() {
+		let curUser = this.authService.currentUser;
+		return curUser == null ? "" : curUser.apellido;
+	}
+
+	getRole() {
+		let curUser = this.authService.currentUser;
+		return curUser == null ? "" : curUser.tipoUsuario;
 	}
 
 	logOut() {
