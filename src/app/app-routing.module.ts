@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AltaTitularComponent } from './pages/alta-titular/alta-titular.component';
+import { AltaLicenciaComponent } from './pages/alta-licencia/alta-licencia.component';
 import { LoginComponent } from './pages/login/login.component'
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
 	{ path: "", component: DashboardComponent },
-  { path: 'alta-titular', component: AltaTitularComponent },
+  	{ path: 'alta-titular', component: AltaTitularComponent },
+  	{ path: 'alta-licencia', component: AltaLicenciaComponent },
 	{ path: '**', redirectTo: '/' }
 ];
 
