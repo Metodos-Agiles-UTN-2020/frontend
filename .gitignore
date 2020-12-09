@@ -46,3 +46,4 @@ testem.log
 Thumbs.db
 
 *.sublime-project
+.vscode/settings.json

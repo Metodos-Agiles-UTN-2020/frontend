@@ -1,27 +1,47 @@
 <div class="ui main text container">
 	<h1 class="ui header">Buscar licencias</h1>
-
-	<form class="ui stacked segment form" #blForm="ngForm" [formGroup]="buscarLicenciasForm" (ngSubmit)="onSubmit(blForm)">
+	<form
+		class="ui stacked segment form"
+		#blForm="ngForm"
+		[formGroup]="buscarLicenciasForm"
+		(ngSubmit)="onSubmit(blForm)"
+	>
 		<div class="fields">
 			<div class="five wide field">
 				<label>Nombre</label>
-				<input type="text" formControlName="nombre" name="nombre">
+				<input type="text" formControlName="nombre" name="nombre" />
 			</div>
 			<div class="five wide field">
 				<label>Apellido</label>
-				<input type="text" formControlName="apellido" name="apellido">
+				<input type="text" formControlName="apellido" name="apellido" />
 			</div>
 			<div class="seven wide field">
 				<label>Grupo Sanguíneo</label>
 				<div class="two fields">
 					<div class="field">
-						<select class="ui fluid search dropdown" formControlName="grupoSanguineo" name="grupoSanguineo">
-							<option value="12">December</option>
+						<select
+							class="ui fluid dropdown"
+							formControlName="grupoSanguineo"
+						>
+							<option
+								value="{{ enum.value }}"
+								*ngFor="let enum of GrupoSanguineo | keyvalue"
+							>
+								{{ enum.key }}
+							</option>
 						</select>
 					</div>
 					<div class="field">
-						<select class="ui fluid search dropdown" formControlName="factorRh" name="factorRh">
-							<option value="12">December</option>
+						<select
+							class="ui fluid dropdown"
+							formControlName="factorRh"
+						>
+							<option
+								value="{{ enum.key }}"
+								*ngFor="let enum of FactorRH | keyvalue"
+							>
+								{{ enum.value }}
+							</option>
 						</select>
 					</div>
 				</div>
@@ -30,7 +50,14 @@
 				<label>&nbsp;</label>
 				<div class="field">
 					<div class="ui checkbox">
-						<input id="donante" type="checkbox" tabindex="0" class="hidden" formControlName="donante" name="donante">
+						<input
+							id="donante"
+							type="checkbox"
+							tabindex="0"
+							class="hidden"
+							formControlName="donante"
+							name="donante"
+						/>
 						<label for="donante">Donante</label>
 					</div>
 				</div>
