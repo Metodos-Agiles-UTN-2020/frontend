@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { GrupoSanguineo } from "../../enums/grupo-sanguineo.enum";
 import { FactorRH } from "../../enums/factor-rh.enum";
+import { ApiService } from "../../services/api/api.service";
 import {
 	NgForm,
 	FormGroup,
@@ -24,16 +25,17 @@ export class LicenciasVigentesComponent implements OnInit {
 	public licencias: number[];
 	public GrupoSanguineo = GrupoSanguineo;
 	public FactorRH = FactorRH;
+	private params = "";
 
-	constructor() {}
+	constructor(private apiService: ApiService) {}
 
 	ngOnInit(): void {
 		this.buscarLicenciasForm = new FormGroup({
-			nombre: new FormControl(null, Validators.required),
-			apellido: new FormControl(null, Validators.required),
-			grupoSanguineo: new FormControl(null, Validators.required),
-			factorRh: new FormControl(null, Validators.required),
-			donante: new FormControl(null, Validators.required),
+			nombre: new FormControl(null),
+			apellido: new FormControl(null),
+			grupoSanguineo: new FormControl(null),
+			factorRh: new FormControl(null),
+			donante: new FormControl(null),
 		});
 	}
 
@@ -54,7 +56,25 @@ export class LicenciasVigentesComponent implements OnInit {
 	}
 
 	onSubmit(f: NgForm) {
-		console.log(f.value);
+		//console.log(f.value);
+		//console.log(f.);
+
+		this.params += `nombre=${this.nombre.value}&`;
+		this.params += `apellido=${this.apellido.value}&`;
+		this.params += `grupoSanguineo=${this.grupoSanguineo.value}&`;
+		this.params += `factorRh=${this.factorRh.value}&`;
+		this.params += `donante=${this.donante.value}`;
+		console.log(this.params);
+
+		this.apiService.get(`/api/v1.0/licencias?${this.params}`).subscribe(
+			(loginResult) => {
+				console.log(loginResult);
+			},
+			(error) => {
+				if (error.status == 403) {
+				}
+			}
+		);
 	}
 
 	getLicencias() {
