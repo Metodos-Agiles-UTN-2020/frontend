@@ -1,0 +1,32 @@
+.logo-textline {
+	margin-left: 10px
+}
+
+.ui.menu .item:before {
+	width: 0px;
+}
+
+.ui.menu:not(.secondary):not(.text):not(.tabular):not(.borderless)>.container>.item:not(.right):not(.borderless):first-child {
+	border-left: 0px;
+}
+
+@media screen and (max-width:475px) { 
+	.logo-textline {
+		display: none;
+	}
+}
+
+#user-rol {
+	padding-top: 0.5em;
+	font-size: 65%;
+	text-align: right;
+	display: block;
+}
+
+#user-name {
+	display: block;
+}
+
+#sign-out-icon {
+	padding-left: 1em;
+}

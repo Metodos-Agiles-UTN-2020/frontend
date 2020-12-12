@@ -1,0 +1,29 @@
+<div class="ui fixed inverted menu color-sfe">
+	<div class="ui container">
+		<a routerLink="/" class="header item">
+			<img class="logo" src="assets/images/logo-white.svg" />
+			<span class="logo-textline">Registro de Licencias de Conducir</span>
+		</a>
+
+		<div class="ui simple dropdown item float left" *ngIf="this.getUserName() != null">
+			Alta de Licencia <i class="dropdown icon"></i>
+			<div class="menu">
+				<a class="item" (click)="this.router.navigate(['/alta-titular'])">Titular Nuevo</a>
+				<a class="item">Titular Existente</a>
+				<a class="item">Renovar Licencia</a>
+			</div>
+		</div>
+
+		<div class="ui simple dropdown item float right" *ngIf="this.getUserName() != null">
+			<div>
+				<span id="user-name">{{ this.getName() }} {{this.getSurname()}}</span>
+				<i id="user-rol">{{this.getRole()}}</i>
+			</div>
+			<i class="dropdown icon"></i>
+
+			<div class="menu">
+				<a class="item" (click)="this.logOut()">Cerrar sesión<i id="sign-out-icon" class="sign-out icon"></i></a>
+			</div>
+		</div>
+	</div>
+</div>
