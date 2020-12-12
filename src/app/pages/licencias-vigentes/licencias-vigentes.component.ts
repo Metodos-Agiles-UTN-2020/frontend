@@ -11,6 +11,7 @@ import {
 	ReactiveFormsModule,
 	FormBuilder,
 } from "@angular/forms";
+
 //import { Licencia } from '../../classes/'
 
 @Component({
@@ -56,17 +57,13 @@ export class LicenciasVigentesComponent implements OnInit {
 	}
 
 	onSubmit(f: NgForm) {
-		//console.log(f.value);
-		//console.log(f.);
+		let params = new URLSearchParams();
 
-		this.params += `nombre=${this.nombre.value}&`;
-		this.params += `apellido=${this.apellido.value}&`;
-		this.params += `grupoSanguineo=${this.grupoSanguineo.value}&`;
-		this.params += `factorRh=${this.factorRh.value}&`;
-		this.params += `donante=${this.donante.value}`;
-		console.log(this.params);
+		for(let key in f.value){
+			params.set(key, f.value[key]);
+		}
 
-		this.apiService.get(`/api/v1.0/licencias?${this.params}`).subscribe(
+		this.apiService.get('/api/v1.0/licencias?' + params.toString()).subscribe(
 			(loginResult) => {
 				console.log(loginResult);
 			},
