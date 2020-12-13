@@ -63,18 +63,9 @@
 
 		<div class="ui form">
 			<div class="inline fields">
-				<label>Donante de Órganos:</label>
-				<div class="field">
-					<div class="ui radio checkbox">
-						<input type="radio" name="condicionDonante" id="Sí" formControlName="condicionDonante" value="Sí">
-						<label for="Sí">Sí</label>
-					</div>
-				</div>
-				<div class="field">
-					<div class="ui radio checkbox">
-						<input type="radio" name="condicionDonante" id="No" formControlName="condicionDonante" value="No">
-						<label for="No">No</label>
-					</div>
+				<div class="ui checkbox">
+					<input id="donante" type="checkbox" name="donante" formControlName="donante">
+					<label for="donante" style="cursor: pointer">Donante de Órganos</label>
 				</div>
 			</div>
 		</div>
@@ -100,7 +91,7 @@
 		<h3 class="ui dividing header">Información de Licencia</h3>
 		<div class="field">
 			<label>Clase Solicitada</label>
-			<select class="ui fluid dropdown" formControlName="tipoLicencia">
+			<select class="ui fluid dropdown" formControlName="claseLicencia">
 				<option value="{{ enum.key }}" *ngFor="let enum of ClaseLicencia | keyvalue">{{ enum.value }}</option>
 			</select>
 		</div>
