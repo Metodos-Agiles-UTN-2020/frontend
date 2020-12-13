@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AltaTitularComponent } from './pages/alta-titular/alta-titular.component';
 import { AltaLicenciaComponent } from './pages/alta-licencia/alta-licencia.component';
 import { LicenciasVigentesComponent } from './pages/licencias-vigentes/licencias-vigentes.component';
+import { AltaUsuarioComponent } from './pages/alta-usuario/alta-usuario.component';
 import { LoginComponent } from './pages/login/login.component'
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   	{ path: 'alta-titular', component: AltaTitularComponent },
   	{ path: 'alta-licencia', component: AltaLicenciaComponent },
 	{ path: 'licencias-vigentes', component: LicenciasVigentesComponent },
+	{ path: 'alta-usuario', component: AltaUsuarioComponent },
 	{ path: '**', redirectTo: '/' }
 ];
 

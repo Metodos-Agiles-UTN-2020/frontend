@@ -1,0 +1,27 @@
+<div class="ui main text container">
+	<h1 class="ui header">Alta de usuario</h1>
+
+	<form #atForm="ngForm" [formGroup]="altaUsuarioForm" (ngSubmit)="onSubmit(auForm)" class="ui form">
+		<h3 class="ui dividing header">Información del usuario</h3>
+		<div class="field">
+			<label>Nombre</label>
+			<div class="two fields">
+				<div class="field">
+					<input type="text" formControlName="nombre" name="nombre" placeholder="Nombre de usuario">
+				</div>
+				<div class="field">
+					<input type="password" formControlName="password" name="password" placeholder="Contraseña">
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<label>Rol</label>
+			<div class="field">
+				<input type="text" formControlName="rol" name="rol" placeholder="Rol">
+			</div>
+		</div>
+
+		<input [disabled]="!altaUsuarioForm.valid" class="ui button" type="submit" value="Enviar" />
+	</form>
+</div>
