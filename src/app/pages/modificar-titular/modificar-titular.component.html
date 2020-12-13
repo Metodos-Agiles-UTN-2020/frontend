@@ -1,0 +1,119 @@
+<div class="ui main text container">
+  <h1 class="ui header">Modificar titular</h1>
+
+  <div class="form ui">
+    <h3 class="ui dividing header">Información del titular</h3>
+
+    <form
+      #btForm="ngForm"
+      [formGroup]="buscarTitularForm"
+      (ngSubmit)="buscarTitular(btForm)"
+      class="ui form"
+    >
+      <div class="two fields">
+        <div class="field">
+          <label>Tipo de Documento</label>
+          <select class="ui fluid dropdown" formControlName="tipoDocumento">
+            <option
+              value="{{ enum.value }}"
+              *ngFor="let enum of TipoDocumento | keyvalue"
+            >
+              {{ enum.key }}
+            </option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Número de Documento</label>
+          <div class="field">
+            <input
+              type="number"
+              formControlName="nroDocumento"
+              name="nroDocumento"
+              placeholder="Número de Documento"
+            />
+          </div>
+        </div>
+      </div>
+
+      <input
+        [disabled]="!buscarTitularForm.valid"
+        class="ui button"
+        type="submit"
+        value="Buscar titular"
+      />
+    </form>
+
+    <div class="ui icon message" *ngIf="displayWaitMessage">
+      <i class="notched circle loading icon"></i>
+      <div class="content">
+        <div class="header">Buscando titulares</div>
+        <p>Espere un segundo.</p>
+      </div>
+    </div>
+
+    <div *ngIf="displayNoResultMessage" class="ui negative message">
+      <div class="header">No se encontraron resultados</div>
+      <p>No existe un titular con los parámetros ingresados</p>
+    </div>
+
+    <form
+      *ngIf="displayForm"
+      #mtForm="ngForm"
+      [formGroup]="modificarTitularForm"
+      (ngSubmit)="modificarTitular(mtForm)"
+      class="ui form"
+    >
+      <div class="two fields">
+        <div class="field">
+          <label>Nombre</label>
+          <input type="text" formControlName="nombre" name="nombre" />
+        </div>
+
+        <div class="field">
+          <label>Apellido</label>
+          <input type="text" formControlName="apellido" name="apellido" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Domicilio</label>
+        <input type="text" formControlName="domicilio" name="domicilio" />
+      </div>
+
+      <div class="inline fields">
+        <div class="ui checkbox">
+          <input
+            id="donante"
+            type="checkbox"
+            name="donante"
+            formControlName="donante"
+          />
+          <label for="donante" style="cursor: pointer"
+            >Donante de Órganos</label
+          >
+        </div>
+      </div>
+
+      <div class="two fields">
+        <div class="twelve wide field">
+          <label>Foto</label>
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/x-png,image/gif,image/jpeg"
+          />
+          <input type="hidden" formControlName="foto" />
+
+          <p class="allowed-types">
+            Tipos de archivos permitidos: PNG, JPG, GIF.
+          </p>
+        </div>
+        <div class="two wide field">
+          <img width="150px" height="150px" src="{{ photoSrc }}" />
+        </div>
+      </div>
+
+      <input class="ui button" type="submit" value="Modificar Titular" />
+    </form>
+  </div>
+</div>
