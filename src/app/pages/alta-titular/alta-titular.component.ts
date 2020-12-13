@@ -1,18 +1,13 @@
-import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import {
-	NgForm,
-	FormGroup,
-	FormControl,
-	Validators,
-	AbstractControl,
-	ReactiveFormsModule,
-	FormBuilder,
-} from "@angular/forms";
-import { TipoDocumento } from "../../enums/tipo-documento.enum";
-import { GrupoSanguineo } from "../../enums/grupo-sanguineo.enum";
-import { FactorRH } from "../../enums/factor-rh.enum";
-import { ClaseLicencia } from "src/app/enums/clase-licencia.enum";
-import { HelpersService } from "../../services/helpers/helpers.service";
+
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { NgForm, FormGroup, FormControl, Validators, AbstractControl, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { TipoDocumento } from '../../enums/tipo-documento.enum';
+import { GrupoSanguineo } from '../../enums/grupo-sanguineo.enum';
+import { FactorRH } from '../../enums/factor-rh.enum';
+import { ClaseLicencia } from 'src/app/enums/clase-licencia.enum';
+import { HelpersService } from '../../services/helpers/helpers.service';
+import { ApiService } from '../../services/api/api.service';
+
 
 @Component({
 	selector: "app-alta-titular",
@@ -28,67 +23,58 @@ export class AltaTitularComponent implements OnInit {
 	public altaTitularForm: FormGroup;
 	public selectedImage;
 
-	constructor(private helpersService: HelpersService) {}
+
+	constructor(
+		private helpersService : HelpersService,
+		private apiService : ApiService
+	) { }
 
 	ngOnInit(): void {
 		this.altaTitularForm = new FormGroup({
-			nombre: new FormControl(null, Validators.required),
-			apellido: new FormControl(null, Validators.required),
-			domicilio: new FormControl(null, Validators.required),
-			tipoDocumento: new FormControl(null, Validators.required),
-			nroDocumento: new FormControl(null, [
-				Validators.required,
-				Validators.pattern("^[0-9]+"),
-			]),
-			fechaNacimiento: new FormControl(null, Validators.required),
-			grupoSanguineo: new FormControl(null, Validators.required),
-			factorRh: new FormControl(null, Validators.required),
-			condicionDonante: new FormControl(null, Validators.required),
-			foto: new FormControl(null, Validators.required),
-			tipoLicencia: new FormControl(null, Validators.required),
-			observaciones: new FormControl(null),
+			'nombre': new FormControl(null, Validators.required),
+			'apellido': new FormControl(null, Validators.required),
+			'domicilio': new FormControl(null, Validators.required),
+			'tipoDocumento': new FormControl(null, Validators.required),
+			'nroDocumento': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+')]),
+			'fechaNacimiento': new FormControl(null, Validators.required),
+			'grupoSanguineo': new FormControl(null, Validators.required),
+			'factorRh': new FormControl(null, Validators.required),
+			'donante': new FormControl(null, Validators.required),
+			'foto': new FormControl(null, Validators.required),
+			'claseLicencia': new FormControl(null, Validators.required),
+			'observaciones': new FormControl(null),
+
 		});
 
 		this.altaTitularForm.controls["tipoDocumento"].setValue("DNI");
 		this.selectedImage = null;
 	}
 
-	get nombre() {
-		return this.altaTitularForm.get("nombre");
-	}
-	get apellidoTitular() {
-		return this.altaTitularForm.get("apellido");
-	}
-	get domicilio() {
-		return this.altaTitularForm.get("domicilio");
-	}
-	get tipoDocumento() {
-		return this.altaTitularForm.get("tipoDocumento");
-	}
-	get nroDocumento() {
-		return this.altaTitularForm.get("nroDocumento");
-	}
-	get fechaNacimiento() {
-		return this.altaTitularForm.get("fechaNacimiento");
-	}
-	get grupoSanguineo() {
-		return this.altaTitularForm.get("grupoSanguineo");
-	}
-	get factorRH() {
-		return this.altaTitularForm.get("factorRh");
-	}
-	get condicionDonante() {
-		return this.altaTitularForm.get("condicionDonante");
-	}
-	get foto() {
-		return this.altaTitularForm.get("foto");
-	}
-	get tipoLicencia() {
-		return this.altaTitularForm.get("tipoLicencia");
-	}
+
+	get nombre() { return this.altaTitularForm.get('nombre'); }
+	get apellido() { return this.altaTitularForm.get('apellido'); }
+	get domicilio() { return this.altaTitularForm.get('domicilio'); }
+	get tipoDocumento() { return this.altaTitularForm.get('tipoDocumento'); }
+	get nroDocumento() { return this.altaTitularForm.get('nroDocumento'); }
+	get fechaNacimiento() { return this.altaTitularForm.get('fechaNacimiento'); }
+	get grupoSanguineo() { return this.altaTitularForm.get('grupoSanguineo'); }
+	get factorRh() { return this.altaTitularForm.get('factorRh'); }
+	get donante() { return this.altaTitularForm.get('donante'); }
+	get foto() { return this.altaTitularForm.get('foto'); }
+	get claseLicencia() { return this.altaTitularForm.get('claseLicencia'); }
+	get observaciones() { return this.altaTitularForm.get('observaciones'); }
+
 
 	onSubmit(f: NgForm) {
-		console.log(f.value);
+		this.apiService.post('/api/titular', f.value).subscribe(
+			loginResult => {
+				console.log(loginResult)
+			},
+			error => {
+				if(error.status == 403) {
+				}
+			}
+		);
 	}
 
 	onFileSelected(event: any) {
