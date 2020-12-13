@@ -1,0 +1,100 @@
+<div class="ui main text container">
+	<h1 class="ui header">Buscar licencias</h1>
+	<form
+		class="ui stacked segment form"
+		#blForm="ngForm"
+		[formGroup]="buscarLicenciasForm"
+		(ngSubmit)="onSubmit(blForm)"
+	>
+		<div class="fields">
+			<div class="five wide field">
+				<label>Nombre</label>
+				<input type="text" formControlName="nombre" name="nombre" />
+			</div>
+			<div class="five wide field">
+				<label>Apellido</label>
+				<input type="text" formControlName="apellido" name="apellido" />
+			</div>
+			<div class="seven wide field">
+				<label>Grupo Sanguíneo</label>
+				<div class="two fields">
+					<div class="field">
+						<select
+							class="ui fluid dropdown"
+							formControlName="grupoSanguineo"
+						>
+							<option
+								value="{{ enum.value }}"
+								*ngFor="let enum of GrupoSanguineo | keyvalue"
+							>
+								{{ enum.key }}
+							</option>
+						</select>
+					</div>
+					<div class="field">
+						<select
+							class="ui fluid dropdown"
+							formControlName="factorRh"
+						>
+							<option
+								value="{{ enum.key }}"
+								*ngFor="let enum of FactorRH | keyvalue"
+							>
+								{{ enum.value }}
+							</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="three wide field">
+				<label>&nbsp;</label>
+				<div class="field">
+					<div class="ui checkbox">
+						<input
+							id="donante"
+							type="checkbox"
+							tabindex="0"
+							class="hidden"
+							formControlName="donante"
+							name="donante"
+						/>
+
+						<label for="donante">Donante</label>
+					</div>
+				</div>
+			</div>
+			<div class="four wide field">
+				<label>&nbsp;</label>
+				<input class="ui button" type="submit" value="Buscar" />
+			</div>
+		</div>
+	</form>
+
+	<div class="ui message" *ngIf="this.searched && !this.getLicencias().length">
+		<div class="header">
+			No se encontraron licencias
+		</div>
+		<p>Ninguna licencia encontrada en nuestra base de datos con los campos solicitados.</p>
+	</div>
+
+	<table class="ui single line table stackable" *ngIf="this.searched && this.getLicencias().length">
+		<thead>
+			<tr>
+				<th>Nro. licencia</th>
+				<th>Apellido y nombre</th>
+				<th>DNI</th>
+				<th>Clase</th>
+				<th>Fecha de expiración</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let licencia of this.getLicencias()">
+				<td>{{ licencia.id }}</td>
+				<td>{{ licencia.apellido }}, {{ licencia.nombre }}</td>
+				<td>{{ licencia.tipoDocumento }} {{ licencia.nroDocumento }}</td>
+				<td>{{ licencia.codigoLicencia }}</td>
+				<td>{{ licencia.fechaFinVigencia }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
