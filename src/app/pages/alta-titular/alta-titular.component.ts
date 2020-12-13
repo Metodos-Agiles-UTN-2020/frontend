@@ -1,4 +1,3 @@
-
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators, AbstractControl, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { TipoDocumento } from '../../enums/tipo-documento.enum';
@@ -7,7 +6,6 @@ import { FactorRH } from '../../enums/factor-rh.enum';
 import { ClaseLicencia } from 'src/app/enums/clase-licencia.enum';
 import { HelpersService } from '../../services/helpers/helpers.service';
 import { ApiService } from '../../services/api/api.service';
-
 
 @Component({
 	selector: "app-alta-titular",
@@ -22,7 +20,6 @@ export class AltaTitularComponent implements OnInit {
 
 	public altaTitularForm: FormGroup;
 	public selectedImage;
-
 
 	constructor(
 		private helpersService : HelpersService,
@@ -41,15 +38,11 @@ export class AltaTitularComponent implements OnInit {
 			'factorRh': new FormControl(null, Validators.required),
 			'donante': new FormControl(null, Validators.required),
 			'foto': new FormControl(null, Validators.required),
-			'claseLicencia': new FormControl(null, Validators.required),
-			'observaciones': new FormControl(null),
-
 		});
 
 		this.altaTitularForm.controls["tipoDocumento"].setValue("DNI");
 		this.selectedImage = null;
 	}
-
 
 	get nombre() { return this.altaTitularForm.get('nombre'); }
 	get apellido() { return this.altaTitularForm.get('apellido'); }
@@ -61,9 +54,6 @@ export class AltaTitularComponent implements OnInit {
 	get factorRh() { return this.altaTitularForm.get('factorRh'); }
 	get donante() { return this.altaTitularForm.get('donante'); }
 	get foto() { return this.altaTitularForm.get('foto'); }
-	get claseLicencia() { return this.altaTitularForm.get('claseLicencia'); }
-	get observaciones() { return this.altaTitularForm.get('observaciones'); }
-
 
 	onSubmit(f: NgForm) {
 		this.apiService.post('/api/titular', f.value).subscribe(

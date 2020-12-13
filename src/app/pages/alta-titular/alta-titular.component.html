@@ -83,19 +83,6 @@
 			</div>
 		</div>
 
-		<div class="field">
-			<label>Observaciones</label>
-			<textarea name="observaciones" formControlName="observaciones"></textarea>
-		</div>
-
-		<h3 class="ui dividing header">Información de Licencia</h3>
-		<div class="field">
-			<label>Clase Solicitada</label>
-			<select class="ui fluid dropdown" formControlName="claseLicencia">
-				<option value="{{ enum.key }}" *ngFor="let enum of ClaseLicencia | keyvalue">{{ enum.value }}</option>
-			</select>
-		</div>
-
 		<input [disabled]="!altaTitularForm.valid" class="ui button" type="submit" value="Enviar" />
 	</form>
 </div>
