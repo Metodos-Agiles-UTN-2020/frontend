@@ -48,12 +48,12 @@ export class AltaLicenciaComponent implements OnInit {
 
 	buscarTitular(f: NgForm) {
 		this.apiService.get('/api/titular/' + f.value.tipoDocumento + '/' + f.value.nroDocumento + '').subscribe(
-			loginResult => {
-				console.log(loginResult)
+			result => {
+				this.buscarTitularForm.controls['nombre'].setValue(result.body['nombre']);
+				this.buscarTitularForm.controls['apellido'].setValue(result.body['apellido']);
+				this.altaLicenciaForm.controls['idTitular'].setValue(result.body['id']);
 			},
 			error => {
-				this.altaLicenciaForm.controls['idTitular'].setValue("3");
-
 				if(error.status == 403) {
 					
 				}
