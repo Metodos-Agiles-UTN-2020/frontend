@@ -21,7 +21,7 @@ import { LicenciasVigentesComponent } from './pages/licencias-vigentes/licencias
 		HeaderComponent,
 		FooterComponent,
     AltaTitularComponent,
-    AltaLicenciaComponent
+    AltaLicenciaComponent,
     LicenciasVigentesComponent
 
   ],

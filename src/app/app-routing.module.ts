@@ -9,8 +9,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component'
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
 	{ path: "", component: DashboardComponent },
-  { path: 'alta-titular', component: AltaTitularComponent },
-  { path: 'alta-licencia', component: AltaLicenciaComponent },
+  	{ path: 'alta-titular', component: AltaTitularComponent },
+  	{ path: 'alta-licencia', component: AltaLicenciaComponent },
 	{ path: 'licencias-vigentes', component: LicenciasVigentesComponent },
 	{ path: '**', redirectTo: '/' }
 ];

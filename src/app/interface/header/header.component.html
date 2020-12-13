@@ -5,12 +5,28 @@
 			<span class="logo-textline">Registro de Licencias de Conducir</span>
 		</a>
 
-		<div class="ui simple dropdown item float left" *ngIf="this.getUserName() != null">
-			Alta de Licencia <i class="dropdown icon"></i>
+		<div class="ui simple dropdown item" *ngIf="this.getUserName() != null">
+			Titulares <i class="dropdown icon"></i>
 			<div class="menu">
-				<a class="item" (click)="this.router.navigate(['/alta-titular'])">Titular Nuevo</a>
-				<a class="item">Titular Existente</a>
-				<a class="item">Renovar Licencia</a>
+				<a class="item" (click)="this.router.navigate(['/alta-titular'])">Nuevo titular</a>
+				<a class="item">Modificar titular</a>
+			</div>
+		</div>
+
+		<div class="ui simple dropdown item" *ngIf="this.getUserName() != null">
+			Licencias <i class="dropdown icon"></i>
+			<div class="menu">
+				<a class="item" (click)="this.router.navigate(['/alta-licencia'])">Nueva licencia</a>
+				<a class="item">Renovar licencia</a>
+				<a class="item" (click)="this.router.navigate(['/licencias-vigentes'])">Licencias vigentes</a>
+				<a class="item">Licencias expiradas</a>
+			</div>
+		</div>
+
+		<div class="ui simple dropdown item" *ngIf="this.getUserName() != null && this.getRole() == 'SUPERUSUARIO'">
+			Usuarios <i class="dropdown icon"></i>
+			<div class="menu">
+				<a class="item">Modificar datos</a>
 			</div>
 		</div>
 
