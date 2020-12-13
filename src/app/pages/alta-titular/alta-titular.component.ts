@@ -36,7 +36,7 @@ export class AltaTitularComponent implements OnInit {
 			'fechaNacimiento': new FormControl(null, Validators.required),
 			'grupoSanguineo': new FormControl(null, Validators.required),
 			'factorRh': new FormControl(null, Validators.required),
-			'donante': new FormControl(null, Validators.required),
+			'donante': new FormControl(false, Validators.required),
 			'foto': new FormControl(null, Validators.required),
 		});
 
