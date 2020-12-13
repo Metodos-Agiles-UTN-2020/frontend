@@ -89,11 +89,11 @@
 		</thead>
 		<tbody>
 			<tr *ngFor="let licencia of this.getLicencias()">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>{{ licencia.id }}</td>
+				<td>{{ licencia.apellido }}, {{ licencia.nombre }}</td>
+				<td>{{ licencia.tipoDocumento }} {{ licencia.nroDocumento }}</td>
+				<td>{{ licencia.codigoLicencia }}</td>
+				<td>{{ licencia.fechaFinVigencia }}</td>
 			</tr>
 		</tbody>
 	</table>
