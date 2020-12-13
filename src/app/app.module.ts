@@ -13,6 +13,7 @@ import { AltaTitularComponent } from './pages/alta-titular/alta-titular.componen
 import { AltaLicenciaComponent } from './pages/alta-licencia/alta-licencia.component';
 import { LicenciasVigentesComponent } from './pages/licencias-vigentes/licencias-vigentes.component';
 import { ModificarTitularComponent } from './pages/modificar-titular/modificar-titular.component';
+import { ModificarUsuarioComponent } from './pages/modificar-usuario/modificar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ModificarTitularComponent } from './pages/modificar-titular/modificar-t
     AltaTitularComponent,
     AltaLicenciaComponent,
     LicenciasVigentesComponent,
-    ModificarTitularComponent
+    ModificarTitularComponent,
+    ModificarUsuarioComponent
 
   ],
   imports: [
