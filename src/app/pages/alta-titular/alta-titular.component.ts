@@ -74,7 +74,7 @@ export class AltaTitularComponent implements OnInit {
 		reader.readAsDataURL(file);
 		reader.onload = () => {
 			this.helpersService
-				.compressImage(reader.result, 250, 250)
+				.compressImage(reader.result, 600, 775)
 				.then((compressed) => {
 					this.selectedImage = compressed;
 					this.altaTitularForm.controls["foto"].setValue(
