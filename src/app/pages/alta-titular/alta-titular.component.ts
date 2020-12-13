@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators, AbstractControl, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { TipoDocumento } from '../../enums/tipo-documento.enum';
@@ -7,13 +8,13 @@ import { ClaseLicencia } from 'src/app/enums/clase-licencia.enum';
 import { HelpersService } from '../../services/helpers/helpers.service';
 import { ApiService } from '../../services/api/api.service';
 
+
 @Component({
-	selector: 'app-alta-titular',
-	templateUrl: './alta-titular.component.html',
-	styleUrls: ['./alta-titular.component.scss']
+	selector: "app-alta-titular",
+	templateUrl: "./alta-titular.component.html",
+	styleUrls: ["./alta-titular.component.scss"],
 })
 export class AltaTitularComponent implements OnInit {
-
 	public TipoDocumento = TipoDocumento;
 	public GrupoSanguineo = GrupoSanguineo;
 	public FactorRH = FactorRH;
@@ -21,6 +22,7 @@ export class AltaTitularComponent implements OnInit {
 
 	public altaTitularForm: FormGroup;
 	public selectedImage;
+
 
 	constructor(
 		private helpersService : HelpersService,
@@ -41,11 +43,13 @@ export class AltaTitularComponent implements OnInit {
 			'foto': new FormControl(null, Validators.required),
 			'claseLicencia': new FormControl(null, Validators.required),
 			'observaciones': new FormControl(null),
+
 		});
 
-		this.altaTitularForm.controls['tipoDocumento'].setValue("DNI");
+		this.altaTitularForm.controls["tipoDocumento"].setValue("DNI");
 		this.selectedImage = null;
 	}
+
 
 	get nombre() { return this.altaTitularForm.get('nombre'); }
 	get apellido() { return this.altaTitularForm.get('apellido'); }
@@ -59,6 +63,7 @@ export class AltaTitularComponent implements OnInit {
 	get foto() { return this.altaTitularForm.get('foto'); }
 	get claseLicencia() { return this.altaTitularForm.get('claseLicencia'); }
 	get observaciones() { return this.altaTitularForm.get('observaciones'); }
+
 
 	onSubmit(f: NgForm) {
 		this.apiService.post('/api/titular', f.value).subscribe(
@@ -78,12 +83,16 @@ export class AltaTitularComponent implements OnInit {
 
 		reader.readAsDataURL(file);
 		reader.onload = () => {
-			this.helpersService.compressImage(reader.result, 250, 250).then(compressed => {
-				this.selectedImage = compressed;
-				this.altaTitularForm.controls['foto'].setValue(this.selectedImage);
-			});
-		}
+			this.helpersService
+				.compressImage(reader.result, 250, 250)
+				.then((compressed) => {
+					this.selectedImage = compressed;
+					this.altaTitularForm.controls["foto"].setValue(
+						this.selectedImage
+					);
+				});
+		};
 
-		reader.onerror = () => this.selectedImage = null;
+		reader.onerror = () => (this.selectedImage = null);
 	}
 }
