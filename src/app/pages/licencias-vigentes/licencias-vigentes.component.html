@@ -70,7 +70,14 @@
 		</div>
 	</form>
 
-	<table class="ui single line table stackable">
+	<div class="ui message" *ngIf="this.searched && !this.getLicencias().length">
+		<div class="header">
+			No se encontraron licencias
+		</div>
+		<p>Ninguna licencia encontrada en nuestra base de datos con los campos solicitados.</p>
+	</div>
+
+	<table class="ui single line table stackable" *ngIf="this.searched && this.getLicencias().length">
 		<thead>
 			<tr>
 				<th>Nro. licencia</th>
