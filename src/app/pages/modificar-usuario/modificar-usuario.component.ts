@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api/api.service';
 import { TipoDocumento } from '../../enums/tipo-documento.enum';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-modificar-usuario',
   templateUrl: './modificar-usuario.component.html',
@@ -70,4 +71,3 @@ export class ModificarUsuarioComponent implements OnInit {
     console.log('handle modificar titular');
     console.log(f.value);
   }
-}
