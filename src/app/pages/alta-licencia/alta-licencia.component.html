@@ -1,0 +1,62 @@
+<div class="ui main text container">
+	<h1 class="ui header">Alta licencia</h1>
+
+	<div class="form ui">
+		<h3 class="ui dividing header">Información del titular</h3>
+
+		<form #btForm="ngForm" [formGroup]="buscarTitularForm" (ngSubmit)="buscarTitular(btForm)" class="ui form">
+			<div class="two fields">
+				<div class="field">
+					<label>Tipo de Documento</label>
+					<select class="ui fluid dropdown" formControlName="tipoDocumento">
+						<option value="{{ enum.value }}" *ngFor="let enum of TipoDocumento | keyvalue">{{ enum.key }}</option>
+					</select>
+				</div>
+				<div class="field">
+					<label>Número de Documento</label>
+					<div class="field">
+						<input type="number" formControlName="nroDocumento" name="nroDocumento" placeholder="Número de Documento">
+					</div>
+				</div>
+			</div>
+
+			<input [disabled]="!buscarTitularForm.valid" class="ui button" type="submit" value="Enviar" />
+
+			<div class="field">
+				<label>Nombre</label>
+				<div class="two fields">
+					<div class="field">
+						<input type="text" formControlName="nombre" name="nombre" placeholder="Nombre">
+					</div>
+					<div class="field">
+						<input type="text" formControlName="apellido" name="apellido" placeholder="Apellido">
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<form #alForm="ngForm" [formGroup]="altaLicenciaForm" (ngSubmit)="onSubmit(alForm)" class="ui form">
+			<input type="hidden" name="idTitular" formControlName="idTitular" />
+
+			<div class="field">
+				<label>Observaciones</label>
+				<textarea name="observaciones" formControlName="observaciones"></textarea>
+			</div>
+
+			<div class="field">
+				<label>Limitaciones</label>
+				<textarea name="limitaciones" formControlName="limitaciones"></textarea>
+			</div>
+
+			<h3 class="ui dividing header">Información de Licencia</h3>
+			<div class="field">
+				<label>Clase Solicitada</label>
+				<select class="ui fluid dropdown" formControlName="codigoLicencia">
+					<option value="{{ enum.key }}" *ngFor="let enum of ClaseLicencia | keyvalue">{{ enum.value }}</option>
+				</select>
+			</div>
+
+			<input [disabled]="!altaLicenciaForm.valid" class="ui button" type="submit" value="Enviar" />
+		</form>
+	</div>
+</div>

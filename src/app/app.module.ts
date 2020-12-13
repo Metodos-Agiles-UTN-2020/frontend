@@ -10,6 +10,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HeaderComponent } from './interface/header/header.component';
 import { FooterComponent } from './interface/footer/footer.component';
 import { AltaTitularComponent } from './pages/alta-titular/alta-titular.component';
+import { AltaLicenciaComponent } from './pages/alta-licencia/alta-licencia.component';
 import { LicenciasVigentesComponent } from './pages/licencias-vigentes/licencias-vigentes.component';
 
 @NgModule({
@@ -20,7 +21,9 @@ import { LicenciasVigentesComponent } from './pages/licencias-vigentes/licencias
 		HeaderComponent,
 		FooterComponent,
     AltaTitularComponent,
+    AltaLicenciaComponent
     LicenciasVigentesComponent
+
   ],
   imports: [
     BrowserModule,
