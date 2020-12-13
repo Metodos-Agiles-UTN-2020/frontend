@@ -12,6 +12,7 @@ import { FooterComponent } from './interface/footer/footer.component';
 import { AltaTitularComponent } from './pages/alta-titular/alta-titular.component';
 import { AltaLicenciaComponent } from './pages/alta-licencia/alta-licencia.component';
 import { LicenciasVigentesComponent } from './pages/licencias-vigentes/licencias-vigentes.component';
+import { ModificarTitularComponent } from './pages/modificar-titular/modificar-titular.component';
 import { ModificarUsuarioComponent } from './pages/modificar-usuario/modificar-usuario.component';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { ModificarUsuarioComponent } from './pages/modificar-usuario/modificar-u
     AltaTitularComponent,
     AltaLicenciaComponent,
     LicenciasVigentesComponent,
+    ModificarTitularComponent,
     ModificarUsuarioComponent
 
   ],

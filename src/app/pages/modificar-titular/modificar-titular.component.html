@@ -1,49 +1,61 @@
 <div class="ui main text container">
-  <h1 class="ui header">Modificar usuario</h1>
+  <h1 class="ui header">Modificar titular</h1>
 
   <div class="form ui">
-    <h3 class="ui dividing header">Información del usuario</h3>
+    <h3 class="ui dividing header">Información del titular</h3>
 
     <form
       #btForm="ngForm"
-      [formGroup]="buscarUsuarioForm"
-      (ngSubmit)="buscarUsuario(btForm)"
+      [formGroup]="buscarTitularForm"
+      (ngSubmit)="buscarTitular(btForm)"
       class="ui form"
     >
-      <div class="field">
-        <label>Número de Documento</label>
+      <div class="two fields">
         <div class="field">
-          <input
-            type="number"
-            formControlName="nroDocumento"
-            name="nroDocumento"
-            placeholder="Número de Documento"
-          />
+          <label>Tipo de Documento</label>
+          <select class="ui fluid dropdown" formControlName="tipoDocumento">
+            <option
+              value="{{ enum.value }}"
+              *ngFor="let enum of TipoDocumento | keyvalue"
+            >
+              {{ enum.key }}
+            </option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Número de Documento</label>
+          <div class="field">
+            <input
+              type="number"
+              formControlName="nroDocumento"
+              name="nroDocumento"
+              placeholder="Número de Documento"
+            />
+          </div>
         </div>
       </div>
 
       <input
-        [disabled]="!buscarUsuarioForm.valid"
+        [disabled]="!buscarTitularForm.valid"
         class="ui button"
         type="submit"
-        value="Buscar usuario"
+        value="Buscar titular"
       />
     </form>
 
     <div class="ui icon message" *ngIf="displayWaitMessage">
       <i class="notched circle loading icon"></i>
       <div class="content">
-        <div class="header">Buscando usuarios</div>
+        <div class="header">Buscando titulares</div>
         <p>Espere un segundo.</p>
       </div>
     </div>
 
     <div *ngIf="displayNoResultMessage" class="ui negative message">
       <div class="header">No se encontraron resultados</div>
-      <p>No existe un usuario con el parámetros ingresado</p>
+      <p>No existe un titular con los parámetros ingresados</p>
     </div>
 
-    <!--
     <form
       *ngIf="displayForm"
       #mtForm="ngForm"
@@ -103,6 +115,5 @@
 
       <input class="ui button" type="submit" value="Modificar Titular" />
     </form>
-    -->
   </div>
 </div>
