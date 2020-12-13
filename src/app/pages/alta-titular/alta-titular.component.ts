@@ -61,7 +61,7 @@ export class AltaTitularComponent implements OnInit {
 	get observaciones() { return this.altaTitularForm.get('observaciones'); }
 
 	onSubmit(f: NgForm) {
-		this.apiService.post('/api/alta-titular', f.value).subscribe(
+		this.apiService.post('/api/titular', f.value).subscribe(
 			loginResult => {
 				console.log(loginResult)
 			},
