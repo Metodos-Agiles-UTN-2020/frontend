@@ -1,108 +1,62 @@
 <div class="ui main text container">
-  <h1 class="ui header">Modificar usuario</h1>
+	<h1 class="ui header">Modificar usuario</h1>
 
-  <div class="form ui">
-    <h3 class="ui dividing header">Información del usuario</h3>
+	<div class="form ui">
+		<h3 class="ui dividing header">Información del usuario</h3>
 
-    <form
-      #btForm="ngForm"
-      [formGroup]="buscarUsuarioForm"
-      (ngSubmit)="buscarUsuario(btForm)"
-      class="ui form"
-    >
-      <div class="field">
-        <label>Número de Documento</label>
-        <div class="field">
-          <input
-            type="number"
-            formControlName="nroDocumento"
-            name="nroDocumento"
-            placeholder="Número de Documento"
-          />
-        </div>
-      </div>
+		<form #buForm="ngForm" [formGroup]="buscarUsuarioForm" (ngSubmit)="buscarUsuario(buForm)" class="ui form">
+			<div class="two fields">
+				<div class="field">
+					<label>Número de Documento</label>
+					<div class="field">
+						<input type="number" formControlName="dni" name="dni" placeholder="Número de Documento" />
+					</div>
+				</div>
+			</div>
 
-      <input
-        [disabled]="!buscarUsuarioForm.valid"
-        class="ui button"
-        type="submit"
-        value="Buscar usuario"
-      />
-    </form>
+			<input [disabled]="!buscarUsuarioForm.valid" class="ui button" type="submit" value="Buscar usuario" />
+		</form>
 
-    <div class="ui icon message" *ngIf="displayWaitMessage">
-      <i class="notched circle loading icon"></i>
-      <div class="content">
-        <div class="header">Buscando usuarios</div>
-        <p>Espere un segundo.</p>
-      </div>
-    </div>
+		<div class="ui icon message" *ngIf="displayWaitMessage">
+			<i class="notched circle loading icon"></i>
+			<div class="content">
+				<div class="header">Buscando usuarios</div>
+				<p>Espere un segundo.</p>
+			</div>
+		</div>
 
-    <div *ngIf="displayNoResultMessage" class="ui negative message">
-      <div class="header">No se encontraron resultados</div>
-      <p>No existe un usuario con el parámetros ingresado</p>
-    </div>
+		<div *ngIf="displayNoResultMessage" class="ui negative message">
+			<div class="header">No se encontraron resultados</div>
+			<p>No existe un usuario con los parámetros ingresados</p>
+		</div>
 
-    <!--
-    <form
-      *ngIf="displayForm"
-      #mtForm="ngForm"
-      [formGroup]="modificarTitularForm"
-      (ngSubmit)="modificarTitular(mtForm)"
-      class="ui form"
-    >
-      <div class="two fields">
-        <div class="field">
-          <label>Nombre</label>
-          <input type="text" formControlName="nombre" name="nombre" />
-        </div>
+		<form *ngIf="displayForm" #mtForm="ngForm" [formGroup]="modificarUsuarioForm" (ngSubmit)="modificarUsuario(mtForm)" class="ui form">
+			<input type="hidden" formControlName="id" name="id" />
+			<input type="hidden" formControlName="username" name="username" />
+			<input type="hidden" formControlName="tipousuario" name="tipousuario" />
+			<div class="two fields">
+				<div class="field">
+					<label>Nombre</label>
+					<input type="text" formControlName="nombre" name="nombre" />
+				</div>
 
-        <div class="field">
-          <label>Apellido</label>
-          <input type="text" formControlName="apellido" name="apellido" />
-        </div>
-      </div>
+				<div class="field">
+					<label>Apellido</label>
+					<input type="text" formControlName="apellido" name="apellido" />
+				</div>
+			</div>
 
-      <div class="field">
-        <label>Domicilio</label>
-        <input type="text" formControlName="domicilio" name="domicilio" />
-      </div>
+			<div class="field">
+				<label>E-mail</label>
+				<input type="text" formControlName="mail" name="mail" />
+			</div>
 
-      <div class="inline fields">
-        <div class="ui checkbox">
-          <input
-            id="donante"
-            type="checkbox"
-            name="donante"
-            formControlName="donante"
-          />
-          <label for="donante" style="cursor: pointer"
-            >Donante de Órganos</label
-          >
-        </div>
-      </div>
+			<div class="field">
+				<label>DNI</label>
+				<input type="text" formControlName="dni" name="dni" />
+			</div>
 
-      <div class="two fields">
-        <div class="twelve wide field">
-          <label>Foto</label>
-          <input
-            type="file"
-            (change)="onFileSelected($event)"
-            accept="image/x-png,image/gif,image/jpeg"
-          />
-          <input type="hidden" formControlName="foto" />
-
-          <p class="allowed-types">
-            Tipos de archivos permitidos: PNG, JPG, GIF.
-          </p>
-        </div>
-        <div class="two wide field">
-          <img width="150px" height="150px" src="{{ photoSrc }}" />
-        </div>
-      </div>
-
-      <input class="ui button" type="submit" value="Modificar Titular" />
-    </form>
-    -->
-  </div>
+			<input class="ui button" type="submit" value="Modificar Usuario" />
+		</form>
+	</div>
 </div>

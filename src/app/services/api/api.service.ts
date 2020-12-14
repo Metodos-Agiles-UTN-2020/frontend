@@ -30,6 +30,14 @@ export class ApiService {
 		});
 	}
 
+	put(url: string, data: any) {
+		return this.http.put<HttpResponse<any>>(url, data, {
+			withCredentials: true,
+			observe: 'response',
+			headers: this.getToken() ? new HttpHeaders('Authorization: ' + this.getToken()) : {}
+		});
+	}
+
 	getToken() {
 		return this.token == null ? localStorage.getItem('token') : this.token;
 	}

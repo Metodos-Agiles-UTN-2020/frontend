@@ -19,6 +19,14 @@ export class AltaLicenciaComponent implements OnInit {
 	public ClaseLicencia = ClaseLicencia;
 	public altaLicenciaForm: FormGroup;
 	public buscarTitularForm: FormGroup;
+	public titularFound: boolean;
+	public displayWaitMessage: boolean;
+	public displayErrorMessage: string;
+	public added: boolean;
+	public licenseFront: string;
+	public licenseBack: string;
+	public reverse: boolean;
+	public printable: boolean;
 
 	ngOnInit(): void {
 		this.buscarTitularForm = new FormGroup({
@@ -31,9 +39,17 @@ export class AltaLicenciaComponent implements OnInit {
 		this.altaLicenciaForm = new FormGroup({
 			'idTitular': new FormControl(null, Validators.required),
 			'codigoLicencia': new FormControl(null, Validators.required),
-			'limitaciones': new FormControl(null, Validators.required),
-			'observaciones': new FormControl(null, Validators.required),
+			'limitaciones': new FormControl(""),
+			'observaciones': new FormControl(""),
 		});
+
+		this.displayWaitMessage = false;
+		this.added = false;
+		this.displayErrorMessage = "";
+		this.licenseFront = "";
+		this.licenseBack = "";
+		this.reverse = false;
+		this.printable = false;
 	}
 
 	get tipoDocumento() { return this.buscarTitularForm.get('tipoDocumento'); }
@@ -52,24 +68,45 @@ export class AltaLicenciaComponent implements OnInit {
 				this.buscarTitularForm.controls['nombre'].setValue(result.body['nombre']);
 				this.buscarTitularForm.controls['apellido'].setValue(result.body['apellido']);
 				this.altaLicenciaForm.controls['idTitular'].setValue(result.body['id']);
+
+				this.titularFound = true;
 			},
 			error => {
 				if(error.status == 403) {
 					
 				}
+
+				this.titularFound = false;
 			}
 		);
 	}
 
 	onSubmit(f: NgForm) {
+		this.displayWaitMessage = true;
+		this.displayErrorMessage = "";
+
 		this.apiService.post('/api/licencia', f.value).subscribe(
-			loginResult => {
-				console.log(loginResult)
+			result => {
+				console.log(result.body);
+				this.displayWaitMessage = false;
+				this.added = true;
+
+				this.licenseFront = result.body['licenciaFrente'];
+				this.licenseBack = result.body['licenciaAtras'];
 			},
 			error => {
 				if(error.status == 403) {
 				}
+				else if(error.status == 400) {
+					this.displayErrorMessage = error.error;
+				}
+
+				this.displayWaitMessage = false;
 			}
 		);
+	}
+
+	reverseCard() {
+		this.reverse = !this.reverse;
 	}
 }

@@ -23,7 +23,7 @@
         <td>{{ licencia.apellido }}, {{ licencia.nombre }}</td>
         <td>{{ licencia.tipoDocumento }} {{ licencia.nroDocumento }}</td>
         <td>{{ licencia.codigoLicencia }}</td>
-        <td>{{ licencia.fechaFinVigencia }}</td>
+        <td>{{ licencia.fechaFinVigencia | date:'fullDate' }}</td>
       </tr>
     </tbody>
   </table>
