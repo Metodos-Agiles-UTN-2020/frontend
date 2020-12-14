@@ -1,27 +1,42 @@
 <div class="ui main text container">
 	<h1 class="ui header">Alta de usuario</h1>
 
-	<form #atForm="ngForm" [formGroup]="altaUsuarioForm" (ngSubmit)="onSubmit(auForm)" class="ui form">
-		<h3 class="ui dividing header">Información del usuario</h3>
-		<div class="field">
-			<label>Nombre</label>
-			<div class="two fields">
-				<div class="field">
-					<input type="text" formControlName="nombre" name="nombre" placeholder="Nombre de usuario">
-				</div>
-				<div class="field">
-					<input type="password" formControlName="password" name="password" placeholder="Contraseña">
-				</div>
-			</div>
-		</div>
-
-		<div class="field">
-			<label>Rol</label>
+	<form #auForm="ngForm" [formGroup]="altaUsuarioForm" (ngSubmit)="altaUsuario(auForm)" class="ui form">
+		<div class="two fields">
 			<div class="field">
-				<input type="text" formControlName="rol" name="rol" placeholder="Rol">
+				<label>Usuario</label>
+				<input type="text" formControlName="username" name="username" />
+			</div>
+
+			<div class="field">
+				<label>Contraseña</label>
+				<input type="password" formControlName="password" name="password" />
+			</div>
+		</div>
+		<div class="two fields">
+			<div class="field">
+				<label>Nombre</label>
+				<input type="text" formControlName="nombre" name="nombre" />
+			</div>
+
+			<div class="field">
+				<label>Apellido</label>
+				<input type="text" formControlName="apellido" name="apellido" />
 			</div>
 		</div>
 
-		<input [disabled]="!altaUsuarioForm.valid" class="ui button" type="submit" value="Enviar" />
+		<div class="field">
+			<label>E-mail</label>
+			<input type="text" formControlName="mail" name="mail" />
+		</div>
+
+		<div class="field">
+			<label>DNI</label>
+			<input type="number" formControlName="dni" name="dni" />
+		</div>
+
+		<input type="hidden" value="" formControlName="tipoUsuario" name="tipoUsuario" />
+
+		<input class="ui button" type="submit" value="Alta Usuario" />
 	</form>
 </div>
