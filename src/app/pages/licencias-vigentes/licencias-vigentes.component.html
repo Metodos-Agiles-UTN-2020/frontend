@@ -80,9 +80,9 @@
 	<table class="ui single line table stackable" *ngIf="this.searched && this.getLicencias().length">
 		<thead>
 			<tr>
-				<th>Nro. licencia</th>
+				<th>Nro.</th>
 				<th>Apellido y nombre</th>
-				<th>DNI</th>
+				<th>Documento</th>
 				<th>Clase</th>
 				<th>Fecha de expiración</th>
 			</tr>
@@ -93,7 +93,7 @@
 				<td>{{ licencia.apellido }}, {{ licencia.nombre }}</td>
 				<td>{{ licencia.tipoDocumento }} {{ licencia.nroDocumento }}</td>
 				<td>{{ licencia.codigoLicencia }}</td>
-				<td>{{ licencia.fechaFinVigencia }}</td>
+				<td>{{ licencia.fechaFinVigencia | date:'mediumDate' }}</td>
 			</tr>
 		</tbody>
 	</table>

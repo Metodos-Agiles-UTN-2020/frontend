@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,31 +15,36 @@ import { LicenciasVigentesComponent } from './pages/licencias-vigentes/licencias
 import { LicenciasExpiradasComponent } from './pages/licencias-expiradas/licencias-expiradas.component';
 import { ModificarTitularComponent } from './pages/modificar-titular/modificar-titular.component';
 import { ModificarUsuarioComponent } from './pages/modificar-usuario/modificar-usuario.component';
+import esAr from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(esAr);
 
 @NgModule({
-  declarations: [
-    AppComponent,
+	declarations: [
+		AppComponent,
 		LoginComponent,
 		DashboardComponent,
 		HeaderComponent,
 		FooterComponent,
-    AltaTitularComponent,
-    AltaLicenciaComponent,
-    LicenciasVigentesComponent,
-    LicenciasExpiradasComponent
-    ModificarTitularComponent,
-    ModificarUsuarioComponent
-
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SuiModule,
-    FormsModule,
-    ReactiveFormsModule,
+		AltaTitularComponent,
+		AltaLicenciaComponent,
+		LicenciasVigentesComponent,
+		LicenciasExpiradasComponent,
+		ModificarTitularComponent,
+		ModificarUsuarioComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		SuiModule,
+		FormsModule,
+		ReactiveFormsModule,
 		HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	],
+	providers: [
+		{ provide: LOCALE_ID, useValue: "es-AR" }, //your locale
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

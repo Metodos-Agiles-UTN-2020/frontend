@@ -1,7 +1,7 @@
 <div class="ui main text container">
 	<h1 class="ui header">Alta licencia</h1>
 
-	<div class="form ui">
+	<div class="form ui" *ngIf="!this.added">
 		<h3 class="ui dividing header">Información del titular</h3>
 
 		<form #btForm="ngForm" [formGroup]="buscarTitularForm" (ngSubmit)="buscarTitular(btForm)" class="ui form">
@@ -35,7 +35,7 @@
 			</div>
 		</form>
 
-		<form #alForm="ngForm" [formGroup]="altaLicenciaForm" (ngSubmit)="onSubmit(alForm)" class="ui form">
+		<form #alForm="ngForm" [formGroup]="altaLicenciaForm" (ngSubmit)="onSubmit(alForm)" class="ui form" *ngIf="this.titularFound">
 			<input type="hidden" name="idTitular" formControlName="idTitular" />
 
 			<div class="field">
@@ -56,7 +56,29 @@
 				</select>
 			</div>
 
+			<div class="ui icon message" *ngIf="displayWaitMessage">
+				<i class="notched circle loading icon"></i>
+				<div class="content">
+					<div class="header">Procesando solicitud</div>
+					<p>Espere un segundo.</p>
+				</div>
+			</div>
+
+			<div *ngIf="this.displayErrorMessage.length" class="ui negative message">
+				<div class="header">Hubo un error al procesar la solicitud</div>
+				<p>{{ this.displayErrorMessage }}</p>
+			</div>
+
 			<input [disabled]="!altaLicenciaForm.valid" class="ui button" type="submit" value="Enviar" />
 		</form>
+	</div>
+
+	<div class="ui container" *ngIf="this.added">
+		<div class="scene scene--card">
+			<div class="card" [ngClass]="this.reverse ? 'is-flipped' : ''" (click)="this.reverseCard()">
+				<div class="card__face card__face--front" style="background-image:url('{{ this.licenseFront }}')"></div>
+				<div class="card__face card__face--back" style="background-image:url('{{ this.licenseBack }}')"></div>
+			</div>
+		</div>
 	</div>
 </div>

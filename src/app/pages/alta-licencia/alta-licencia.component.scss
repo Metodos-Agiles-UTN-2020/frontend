@@ -1,0 +1,33 @@
+.scene {
+	margin: 40px auto;
+	perspective: 600px;
+	--width-license: 470px;
+	width: var(--width-license);
+	height: calc(var(--width-license) / 1.586);
+}
+
+.card {
+	width: 100%;
+	height: 100%;
+	transition: transform 1s;
+	transform-style: preserve-3d;
+	cursor: pointer;
+	position: relative;
+}
+
+.card.is-flipped,
+.card__face--back {
+	transform: rotateY(180deg);
+}
+
+.card__face {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	border-radius:15px;
+	box-shadow: 3px 3px 43px #FFF inset;
+	border: 1px solid #CCC;
+}
