@@ -28,9 +28,11 @@ export class ModificarUsuarioComponent implements OnInit {
 		});
 
 		this.modificarUsuarioForm = new FormGroup({
+			id: new FormControl(null, Validators.required),
 			nombre: new FormControl(null, Validators.required),
 			apellido: new FormControl(null, Validators.required),
 			email: new FormControl(null, Validators.required),
+			dni: new FormControl(null, Validators.required)
 		});
 	}
 
@@ -40,43 +42,40 @@ export class ModificarUsuarioComponent implements OnInit {
 		this.displayForm = false;
 		this.displayWaitMessage = true;
 		this.displayNoResultMessage = false;
-		this.apiService.get('/api/user/' + f.value.dni + '').subscribe(
+		this.apiService.get('/api/user/' + f.value.dni).subscribe(
 			(result) => {
 				this.displayWaitMessage = false;
-				if (result.body !== null) {
-          /*
-            this.modificarTitularForm = new FormGroup({
-              tipoDocumento: new FormControl(
-                result.body['tipoDocumento'],
-                Validators.required
-              ),
-              nroDocumento: new FormControl(
-                result.body['nroDocumento'],
-                Validators.required
-              ),
-              nombre: new FormControl(result.body['nombre']),
-              apellido: new FormControl(result.body['apellido']),
-              domicilio: new FormControl(result.body['domicilio']),
-              donante: new FormControl(result.body['donante']),
-              foto: new FormControl(result.body['foto']),
-            });
-            this.displayForm = true;
-            this.displayNoResultMessage = false;
-            this.photoSrc = result.body['foto'];
-          } else {
-          	this.displayNoResultMessage = true;*/
-          }
-      },
-      (error) => {
-      	this.displayWaitMessage = false;
-      	if (error.status == 403) {
-      	}
-      }
-      );
+				this.modificarUsuarioForm = new FormGroup({
+					id: new FormControl(result.body['id']),
+					username: new FormControl(result.body['username']),
+					tipousuario: new FormControl(result.body['tipousuario']),
+					nombre: new FormControl(result.body['nombre']),
+					apellido: new FormControl(result.body['apellido']),
+					dni: new FormControl(result.body['dni']),
+					mail: new FormControl(result.body['mail']),
+				});
+
+				this.displayForm = true;
+				this.displayNoResultMessage = false;
+				this.photoSrc = result.body['foto'];
+			},
+			(error) => {
+				this.displayWaitMessage = false;
+				if (error.status == 403) {
+				}
+				else if(error.status == 404) {
+					this.displayNoResultMessage = true;
+				}
+			}
+		);
 	}
 
-	modificarTitular(f: NgForm) {
-		console.log('handle modificar titular');
-		console.log(f.value);
+	modificarUsuario(f: NgForm) {
+		this.apiService.put('/api/user', f.value).subscribe(
+			(result) => {
+			},
+			(error) => {
+			}
+		);
 	}
 }

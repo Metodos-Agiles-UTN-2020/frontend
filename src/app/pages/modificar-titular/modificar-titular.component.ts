@@ -75,6 +75,9 @@ export class ModificarTitularComponent implements OnInit {
         	this.displayWaitMessage = false;
         	if (error.status == 403) {
         	}
+        	else if(error.status == 404) {
+        		this.displayNoResultMessage = true;
+        	}
         }
         );
 	}

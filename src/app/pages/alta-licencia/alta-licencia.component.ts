@@ -26,6 +26,7 @@ export class AltaLicenciaComponent implements OnInit {
 	public licenseFront: string;
 	public licenseBack: string;
 	public reverse: boolean;
+	public printable: boolean;
 
 	ngOnInit(): void {
 		this.buscarTitularForm = new FormGroup({
@@ -38,8 +39,8 @@ export class AltaLicenciaComponent implements OnInit {
 		this.altaLicenciaForm = new FormGroup({
 			'idTitular': new FormControl(null, Validators.required),
 			'codigoLicencia': new FormControl(null, Validators.required),
-			'limitaciones': new FormControl(null, Validators.required),
-			'observaciones': new FormControl(null, Validators.required),
+			'limitaciones': new FormControl(""),
+			'observaciones': new FormControl(""),
 		});
 
 		this.displayWaitMessage = false;
@@ -48,6 +49,7 @@ export class AltaLicenciaComponent implements OnInit {
 		this.licenseFront = "";
 		this.licenseBack = "";
 		this.reverse = false;
+		this.printable = false;
 	}
 
 	get tipoDocumento() { return this.buscarTitularForm.get('tipoDocumento'); }
@@ -106,6 +108,5 @@ export class AltaLicenciaComponent implements OnInit {
 
 	reverseCard() {
 		this.reverse = !this.reverse;
-		console.log("flip!" + this.reverse);
 	}
 }

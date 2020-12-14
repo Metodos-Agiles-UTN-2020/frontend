@@ -31,6 +31,9 @@
 		</div>
 
 		<form *ngIf="displayForm" #mtForm="ngForm" [formGroup]="modificarUsuarioForm" (ngSubmit)="modificarUsuario(mtForm)" class="ui form">
+			<input type="hidden" formControlName="id" name="id" />
+			<input type="hidden" formControlName="username" name="username" />
+			<input type="hidden" formControlName="tipousuario" name="tipousuario" />
 			<div class="two fields">
 				<div class="field">
 					<label>Nombre</label>
@@ -45,7 +48,12 @@
 
 			<div class="field">
 				<label>E-mail</label>
-				<input type="text" formControlName="email" name="email" />
+				<input type="text" formControlName="mail" name="mail" />
+			</div>
+
+			<div class="field">
+				<label>DNI</label>
+				<input type="text" formControlName="dni" name="dni" />
 			</div>
 
 			<input class="ui button" type="submit" value="Modificar Usuario" />

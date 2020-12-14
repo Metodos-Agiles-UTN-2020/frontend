@@ -74,10 +74,27 @@
 	</div>
 
 	<div class="ui container" *ngIf="this.added">
-		<div class="scene scene--card">
+		<p>La licencia fue dada de alta.</p>
+		<p><button class="ui button" (click)="this.printable = !this.printable">Alternar visualización</button></p>
+
+		<div class="scene scene--card" *ngIf="!this.printable">
 			<div class="card" [ngClass]="this.reverse ? 'is-flipped' : ''" (click)="this.reverseCard()">
 				<div class="card__face card__face--front" style="background-image:url('{{ this.licenseFront }}')"></div>
 				<div class="card__face card__face--back" style="background-image:url('{{ this.licenseBack }}')"></div>
+			</div>
+		</div>
+
+		<div class="printable" *ngIf="this.printable">
+			<div class="scene scene--card">
+				<div class="card">
+					<div *ngIf="this.printable" class="card__face card__face--front" style="background-image:url('{{ this.licenseFront }}')"></div>
+				</div>
+			</div>
+
+			<div class="scene scene--card">
+				<div class="card">
+					<div *ngIf="this.printable" class="card__face card__face--front" style="background-image:url('{{ this.licenseBack }}')"></div>
+				</div>
 			</div>
 		</div>
 	</div>
