@@ -4,6 +4,7 @@ import { TipoDocumento } from '../../enums/tipo-documento.enum';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { GrupoSanguineo } from '../../enums/grupo-sanguineo.enum';
 import { FactorRH } from '../../enums/factor-rh.enum';
+import { HelpersService } from '../../services/helpers/helpers.service';
 
 @Component({
 	selector: 'app-modificar-titular',
@@ -11,7 +12,11 @@ import { FactorRH } from '../../enums/factor-rh.enum';
 	styleUrls: ['./modificar-titular.component.scss'],
 })
 export class ModificarTitularComponent implements OnInit {
-	constructor(private apiService: ApiService) {}
+
+	constructor(
+		private helpersService : HelpersService,
+		private apiService : ApiService
+	) { }
 
 	public TipoDocumento = TipoDocumento;
 	public GrupoSanguineo = GrupoSanguineo;
@@ -25,7 +30,8 @@ export class ModificarTitularComponent implements OnInit {
 	public displayNoResultMessage = false;
 	public displayError : string;
 	public displayOK = false;
-	public photoSrc = '';
+	public photoSrc;
+	public selectedImage;
 
 	ngOnInit(): void {
 		this.buscarTitularForm = new FormGroup({
@@ -84,6 +90,25 @@ export class ModificarTitularComponent implements OnInit {
         	}
         }
         );
+	}
+
+	onFileSelected(event: any) {
+		let reader = new FileReader();
+		let file = event.target.files[0];
+
+		reader.readAsDataURL(file);
+		reader.onload = () => {
+			this.helpersService
+				.compressImage(reader.result, 600, 775)
+				.then((compressed) => {
+					this.photoSrc = compressed;
+					this.modificarTitularForm.controls["foto"].setValue(
+						this.photoSrc
+					);
+				});
+		};
+
+		reader.onerror = () => (this.photoSrc = null);
 	}
 
 	modificarTitular(f: NgForm) {
