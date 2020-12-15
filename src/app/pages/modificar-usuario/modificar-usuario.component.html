@@ -20,20 +20,20 @@
 		<div class="ui icon message" *ngIf="displayWaitMessage">
 			<i class="notched circle loading icon"></i>
 			<div class="content">
-				<div class="header">Buscando usuarios</div>
+				<div class="header">Procesando</div>
 				<p>Espere un segundo.</p>
 			</div>
 		</div>
 
-		<div *ngIf="displayNoResultMessage" class="ui negative message">
-			<div class="header">No se encontraron resultados</div>
-			<p>No existe un usuario con los parámetros ingresados</p>
+		<div *ngIf="displayOK" class="ui positive message">
+			<div class="header">Modificación realizada</div>
+			<p>Se realizó la modificación exitosamente</p>
 		</div>
 
 		<form *ngIf="displayForm" #mtForm="ngForm" [formGroup]="modificarUsuarioForm" (ngSubmit)="modificarUsuario(mtForm)" class="ui form">
 			<input type="hidden" formControlName="id" name="id" />
 			<input type="hidden" formControlName="username" name="username" />
-			<input type="hidden" formControlName="tipousuario" name="tipousuario" />
+			<input type="hidden" formControlName="tipoUsuario" name="tipoUsuario" />
 			<div class="two fields">
 				<div class="field">
 					<label>Nombre</label>

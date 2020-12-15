@@ -20,6 +20,9 @@ export class AltaTitularComponent implements OnInit {
 
 	public altaTitularForm: FormGroup;
 	public selectedImage;
+	public displayWaitMessage = false;
+	public displayNoResultMessage : string;
+	public displayOK = false;
 
 	constructor(
 		private helpersService : HelpersService,
@@ -56,13 +59,21 @@ export class AltaTitularComponent implements OnInit {
 	get foto() { return this.altaTitularForm.get('foto'); }
 
 	onSubmit(f: NgForm) {
+		this.displayWaitMessage = true;
+		this.displayOK = false;
+		this.displayNoResultMessage = "";
+
 		this.apiService.post('/api/titular', f.value).subscribe(
-			loginResult => {
-				console.log(loginResult)
+			result => {
+				this.displayWaitMessage = false;
+				this.displayOK = true;
 			},
 			error => {
 				if(error.status == 403) {
 				}
+
+				this.displayNoResultMessage = error.error;
+				this.displayWaitMessage = false;
 			}
 		);
 	}

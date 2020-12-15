@@ -83,6 +83,24 @@
 			</div>
 		</div>
 
+		<div class="ui icon message" *ngIf="displayWaitMessage">
+			<i class="notched circle loading icon"></i>
+			<div class="content">
+				<div class="header">Procesando</div>
+				<p>Espere un segundo.</p>
+			</div>
+		</div>
+
+		<div *ngIf="this.displayOK" class="ui positive message">
+			<div class="header">Alta exitosa</div>
+			<p>El titular fue dado de alta exitosamente.</p>
+		</div>
+
+		<div *ngIf="displayNoResultMessage" class="ui negative message">
+			<div class="header">Hubo un error al procesar lo solicitado</div>
+			<p>{{ this.displayNoResultMessage }}</p>
+		</div>
+
 		<input [disabled]="!altaTitularForm.valid" class="ui button" type="submit" value="Enviar" />
 	</form>
 </div>

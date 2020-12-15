@@ -26,7 +26,8 @@
 		<div class="ui simple dropdown item" *ngIf="this.getUserName() != null && this.getRole() == 'SUPERUSUARIO'">
 			Usuarios <i class="dropdown icon"></i>
 			<div class="menu">
-				<a class="item">Modificar datos</a>
+				<a class="item" (click)="this.router.navigate(['/alta-usuario'])">Dar de alta</a>
+				<a class="item" (click)="this.router.navigate(['/modificar-usuario'])">Modificar datos</a>
 			</div>
 		</div>
 

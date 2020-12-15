@@ -19,7 +19,8 @@ export class AltaUsuarioComponent implements OnInit {
 	public altaUsuarioForm: FormGroup;
 	public displayWaitMessage = false;
 	public displayForm = false;
-	public displayNoResultMessage = false;
+	public displayOK = false;
+	public displayError = "";
 
 	ngOnInit(): void {
 		this.altaUsuarioForm = new FormGroup({
@@ -42,10 +43,18 @@ export class AltaUsuarioComponent implements OnInit {
 	get tipoUsuario() { return this.altaUsuarioForm.get('tipoUsuario'); }
 
 	altaUsuario(f: NgForm) {
+		this.displayWaitMessage = true;
+		this.displayOK = false;
+		this.displayError = "";
+
 		this.apiService.post('/api/user', f.value).subscribe(
 			(result) => {
+				this.displayOK = true;
+				this.displayWaitMessage = false;
 			},
 			(error) => {
+				this.displayError = error.error;
+				this.displayWaitMessage = false;
 			}
 		);
 	}

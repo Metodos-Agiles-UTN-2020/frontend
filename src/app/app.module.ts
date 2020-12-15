@@ -15,6 +15,7 @@ import { LicenciasVigentesComponent } from './pages/licencias-vigentes/licencias
 import { LicenciasExpiradasComponent } from './pages/licencias-expiradas/licencias-expiradas.component';
 import { ModificarTitularComponent } from './pages/modificar-titular/modificar-titular.component';
 import { ModificarUsuarioComponent } from './pages/modificar-usuario/modificar-usuario.component';
+import { AltaUsuarioComponent } from './pages/alta-usuario/alta-usuario.component';
 import esAr from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 
@@ -32,7 +33,8 @@ registerLocaleData(esAr);
 		LicenciasVigentesComponent,
 		LicenciasExpiradasComponent,
 		ModificarTitularComponent,
-		ModificarUsuarioComponent
+		ModificarUsuarioComponent,
+		AltaUsuarioComponent
 	],
 	imports: [
 		BrowserModule,

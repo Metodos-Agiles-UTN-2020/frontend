@@ -6,6 +6,7 @@ import { LicenciasVigentesComponent } from './pages/licencias-vigentes/licencias
 import { LicenciasExpiradasComponent } from './pages/licencias-expiradas/licencias-expiradas.component';
 import { ModificarTitularComponent } from './pages/modificar-titular/modificar-titular.component';
 import { ModificarUsuarioComponent } from './pages/modificar-usuario/modificar-usuario.component';
+import { AltaUsuarioComponent } from './pages/alta-usuario/alta-usuario.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'licencias-expiradas', component: LicenciasExpiradasComponent },
   { path: 'modificar-titular', component: ModificarTitularComponent },
   { path: 'modificar-usuario', component: ModificarUsuarioComponent },
+  { path: 'alta-usuario', component: AltaUsuarioComponent },
   { path: '**', redirectTo: '/' },
 ];
 

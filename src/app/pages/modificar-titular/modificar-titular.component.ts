@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api/api.service';
 import { TipoDocumento } from '../../enums/tipo-documento.enum';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { GrupoSanguineo } from '../../enums/grupo-sanguineo.enum';
+import { FactorRH } from '../../enums/factor-rh.enum';
 
 @Component({
 	selector: 'app-modificar-titular',
@@ -12,6 +14,8 @@ export class ModificarTitularComponent implements OnInit {
 	constructor(private apiService: ApiService) {}
 
 	public TipoDocumento = TipoDocumento;
+	public GrupoSanguineo = GrupoSanguineo;
+	public FactorRH = FactorRH;
 	public buscarTitularForm: FormGroup;
 	public modificarTitularForm: FormGroup;
 	public search = false;
@@ -19,6 +23,8 @@ export class ModificarTitularComponent implements OnInit {
 	public displayWaitMessage = false;
 	public displayForm = false;
 	public displayNoResultMessage = false;
+	public displayError : string;
+	public displayOK = false;
 	public photoSrc = '';
 
 	ngOnInit(): void {
@@ -39,19 +45,17 @@ export class ModificarTitularComponent implements OnInit {
 				this.displayWaitMessage = false;
 				if (result.body !== null) {
 					this.modificarTitularForm = new FormGroup({
-						tipoDocumento: new FormControl(
-							result.body['tipoDocumento'],
-							Validators.required
-							),
-						nroDocumento: new FormControl(
-							result.body['nroDocumento'],
-							Validators.required
-							),
-						nombre: new FormControl(result.body['nombre']),
-						apellido: new FormControl(result.body['apellido']),
-						domicilio: new FormControl(result.body['domicilio']),
-						donante: new FormControl(result.body['donante']),
-						foto: new FormControl(result.body['foto']),
+						'id': new FormControl(result.body['id'], Validators.required),
+						'nombre': new FormControl(result.body['nombre'], Validators.required),
+						'apellido': new FormControl(result.body['apellido'], Validators.required),
+						'domicilio': new FormControl(result.body['domicilio'], Validators.required),
+						'tipoDocumento': new FormControl(result.body['tipoDocumento'], Validators.required),
+						'nroDocumento': new FormControl(result.body['nroDocumento'], [Validators.required, Validators.pattern('^[0-9]+')]),
+						'fechaNacimiento': new FormControl(result.body['fechaNacimiento'], Validators.required),
+						'grupoSanguineo': new FormControl(result.body['grupoSanguineo'], Validators.required),
+						'factorRh': new FormControl(result.body['factorRh'], Validators.required),
+						'donante': new FormControl(result.body['donante'], Validators.required),
+						'foto': new FormControl(result.body['foto'], Validators.required),
 					});
 					this.displayForm = true;
 					this.displayNoResultMessage = false;
@@ -83,7 +87,18 @@ export class ModificarTitularComponent implements OnInit {
 	}
 
 	modificarTitular(f: NgForm) {
-		console.log('handle modificar titular');
-		console.log(f.value);
+		this.displayOK = false;
+		this.displayError = "";
+		this.displayWaitMessage = true;
+		this.apiService.post('/api/updatetitular', f.value).subscribe(
+			(result) => {
+				this.displayOK = true;
+				this.displayWaitMessage = false;
+			},
+			(error) => {
+				this.displayError = error.error;
+				this.displayWaitMessage = false;
+			}
+		);
 	}
 }

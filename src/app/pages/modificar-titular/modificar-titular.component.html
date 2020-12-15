@@ -38,7 +38,18 @@
 			<p>No existe un titular con los parámetros ingresados</p>
 		</div>
 
+		<div *ngIf="this.displayOK" class="ui positive message">
+			<div class="header">Modificación exitosa</div>
+			<p>El titular fue modificado exitosamente.</p>
+		</div>
+
+		<div *ngIf="displayError" class="ui negative message">
+			<div class="header">Hubo un error al procesar lo solicitado</div>
+			<p>{{ this.displayError }}</p>
+		</div>
+
 		<form *ngIf="displayForm" #mtForm="ngForm" [formGroup]="modificarTitularForm" (ngSubmit)="modificarTitular(mtForm)" class="ui form">
+			<input type="hidden" formControlName="id" name="id" />
 			<div class="two fields">
 				<div class="field">
 					<label>Nombre</label>
@@ -54,6 +65,45 @@
 			<div class="field">
 				<label>Domicilio</label>
 				<input type="text" formControlName="domicilio" name="domicilio" />
+			</div>
+
+			<div class="two fields">
+				<div class="field">
+					<label>Tipo de Documento</label>
+					<select class="ui fluid dropdown" formControlName="tipoDocumento">
+						<option value="{{ enum.value }}" *ngFor="let enum of TipoDocumento | keyvalue">{{ enum.key }}</option>
+					</select>
+				</div>
+				<div class="field">
+					<label>Número de Documento</label>
+					<div class="field">
+						<input type="number" formControlName="nroDocumento" name="nroDocumento"
+						placeholder="Número de Documento">
+					</div>
+				</div>
+			</div>
+
+			<div class="three fields">
+				<div class="ui calendar field">
+					<label>Fecha de Nacimiento</label>
+					<div class="ui input left">
+						<input type="date" formControlName="fechaNacimiento" name="fechaNacimiento" id="calendar">
+					</div>
+				</div>
+
+				<div class="field">
+					<label>Grupo Sanguíneo</label>
+					<select class="ui fluid dropdown" formControlName="grupoSanguineo">
+						<option value="{{ enum.value }}" *ngFor="let enum of GrupoSanguineo | keyvalue">{{ enum.key }}</option>
+					</select>
+				</div>
+
+				<div class="field">
+					<label>Factor RH</label>
+					<select class="ui fluid dropdown" formControlName="factorRh">
+						<option value="{{ enum.key }}" *ngFor="let enum of FactorRH | keyvalue">{{ enum.value }}</option>
+					</select>
+				</div>
 			</div>
 
 			<div class="inline fields">

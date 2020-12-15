@@ -19,8 +19,8 @@ export class ModificarUsuarioComponent implements OnInit {
 	public result = false;
 	public displayWaitMessage = false;
 	public displayForm = false;
-	public displayNoResultMessage = false;
-	public photoSrc = '';
+	public displayOK = false;
+	public displayNoResultMessage : string;
 
 	ngOnInit(): void {
 		this.buscarUsuarioForm = new FormGroup({
@@ -41,14 +41,14 @@ export class ModificarUsuarioComponent implements OnInit {
 	buscarUsuario(f: NgForm) {
 		this.displayForm = false;
 		this.displayWaitMessage = true;
-		this.displayNoResultMessage = false;
+		this.displayNoResultMessage = "";
 		this.apiService.get('/api/user/' + f.value.dni).subscribe(
 			(result) => {
 				this.displayWaitMessage = false;
 				this.modificarUsuarioForm = new FormGroup({
 					id: new FormControl(result.body['id']),
 					username: new FormControl(result.body['username']),
-					tipousuario: new FormControl(result.body['tipousuario']),
+					tipoUsuario: new FormControl(result.body['tipoUsuario']),
 					nombre: new FormControl(result.body['nombre']),
 					apellido: new FormControl(result.body['apellido']),
 					dni: new FormControl(result.body['dni']),
@@ -56,25 +56,30 @@ export class ModificarUsuarioComponent implements OnInit {
 				});
 
 				this.displayForm = true;
-				this.displayNoResultMessage = false;
-				this.photoSrc = result.body['foto'];
+				this.displayNoResultMessage = "";
 			},
 			(error) => {
 				this.displayWaitMessage = false;
 				if (error.status == 403) {
 				}
 				else if(error.status == 404) {
-					this.displayNoResultMessage = true;
+					this.displayNoResultMessage = error.error;
 				}
 			}
 		);
 	}
 
 	modificarUsuario(f: NgForm) {
-		this.apiService.put('/api/user', f.value).subscribe(
+		this.displayOK = false;
+		this.displayWaitMessage = true;
+
+		this.apiService.post('/api/updateuser', f.value).subscribe(
 			(result) => {
+				this.displayOK = true;
+				this.displayWaitMessage = false;
 			},
 			(error) => {
+				this.displayWaitMessage = false;
 			}
 		);
 	}

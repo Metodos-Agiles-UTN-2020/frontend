@@ -37,6 +37,24 @@
 
 		<input type="hidden" value="" formControlName="tipoUsuario" name="tipoUsuario" />
 
+		<div class="ui icon message" *ngIf="displayWaitMessage">
+			<i class="notched circle loading icon"></i>
+			<div class="content">
+				<div class="header">Procesando</div>
+				<p>Espere un segundo.</p>
+			</div>
+		</div>
+
+		<div *ngIf="this.displayOK" class="ui positive message">
+			<div class="header">Alta exitosa</div>
+			<p>El usuario fue dado de alta exitosamente.</p>
+		</div>
+
+		<div *ngIf="this.displayError.length" class="ui negative message">
+			<div class="header">No se pudo dar de alta</div>
+			<p>{{ this.displayError }}</p>
+		</div>
+
 		<input class="ui button" type="submit" value="Alta Usuario" />
 	</form>
 </div>
