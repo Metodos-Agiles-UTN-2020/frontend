@@ -11,6 +11,7 @@ import {
 	ReactiveFormsModule,
 	FormBuilder,
 } from '@angular/forms';
+import { Router } from "@angular/router";
 
 //import { Licencia } from '../../classes/'
 
@@ -29,7 +30,10 @@ export class LicenciasVigentesComponent implements OnInit {
 	private params = '';
 	public searched: boolean;
 
-	constructor(private apiService: ApiService) {}
+	constructor(
+		private apiService: ApiService,
+		private router : Router
+		) {}
 
 	ngOnInit(): void {
 		this.buscarLicenciasForm = new FormGroup({
@@ -91,5 +95,10 @@ export class LicenciasVigentesComponent implements OnInit {
 
 	getLicencias() {
 		return this.licencias;
+	}
+
+	emitirCopia(id) {
+		console.log("emitir copia" + id);
+		this.router.navigate(['/licencia/' + id ]);
 	}
 }

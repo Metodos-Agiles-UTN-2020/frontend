@@ -8,6 +8,7 @@ import { ModificarTitularComponent } from './pages/modificar-titular/modificar-t
 import { ModificarUsuarioComponent } from './pages/modificar-usuario/modificar-usuario.component';
 import { AltaUsuarioComponent } from './pages/alta-usuario/alta-usuario.component';
 import { LoginComponent } from './pages/login/login.component';
+import { LicenciaComponent } from './pages/licencia/licencia.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'modificar-titular', component: ModificarTitularComponent },
   { path: 'modificar-usuario', component: ModificarUsuarioComponent },
   { path: 'alta-usuario', component: AltaUsuarioComponent },
+  { path: 'licencia/:id', component: LicenciaComponent },
   { path: '**', redirectTo: '/' },
 ];
 

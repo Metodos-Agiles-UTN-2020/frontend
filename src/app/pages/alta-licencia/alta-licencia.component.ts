@@ -3,6 +3,7 @@ import { NgForm, FormGroup, FormControl, Validators, AbstractControl, ReactiveFo
 import { ClaseLicencia } from 'src/app/enums/clase-licencia.enum';
 import { TipoDocumento } from '../../enums/tipo-documento.enum';
 import { ApiService } from '../../services/api/api.service';
+import { Router } from "@angular/router";
 
 @Component({
 	selector: 'app-alta-licencia',
@@ -12,7 +13,8 @@ import { ApiService } from '../../services/api/api.service';
 export class AltaLicenciaComponent implements OnInit {
 
 	constructor(
-		private apiService : ApiService
+		private apiService : ApiService,
+		private router : Router
 		) { }
 
 	public TipoDocumento = TipoDocumento;
@@ -23,10 +25,6 @@ export class AltaLicenciaComponent implements OnInit {
 	public displayWaitMessage: boolean;
 	public displayErrorMessage: string;
 	public added: boolean;
-	public licenseFront: string;
-	public licenseBack: string;
-	public reverse: boolean;
-	public printable: boolean;
 
 	ngOnInit(): void {
 		this.buscarTitularForm = new FormGroup({
@@ -46,10 +44,6 @@ export class AltaLicenciaComponent implements OnInit {
 		this.displayWaitMessage = false;
 		this.added = false;
 		this.displayErrorMessage = "";
-		this.licenseFront = "";
-		this.licenseBack = "";
-		this.reverse = false;
-		this.printable = false;
 	}
 
 	get tipoDocumento() { return this.buscarTitularForm.get('tipoDocumento'); }
@@ -90,9 +84,7 @@ export class AltaLicenciaComponent implements OnInit {
 				console.log(result.body);
 				this.displayWaitMessage = false;
 				this.added = true;
-
-				this.licenseFront = result.body['licenciaFrente'];
-				this.licenseBack = result.body['licenciaAtras'];
+				this.router.navigate(['/licencia/' + result.body['id'] ]);
 			},
 			error => {
 				if(error.status == 403) {
@@ -104,9 +96,5 @@ export class AltaLicenciaComponent implements OnInit {
 				this.displayWaitMessage = false;
 			}
 		);
-	}
-
-	reverseCard() {
-		this.reverse = !this.reverse;
 	}
 }

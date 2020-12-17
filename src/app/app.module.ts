@@ -18,6 +18,7 @@ import { ModificarUsuarioComponent } from './pages/modificar-usuario/modificar-u
 import { AltaUsuarioComponent } from './pages/alta-usuario/alta-usuario.component';
 import esAr from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { LicenciaComponent } from './pages/licencia/licencia.component';
 
 registerLocaleData(esAr);
 
@@ -34,7 +35,8 @@ registerLocaleData(esAr);
 		LicenciasExpiradasComponent,
 		ModificarTitularComponent,
 		ModificarUsuarioComponent,
-		AltaUsuarioComponent
+		AltaUsuarioComponent,
+		LicenciaComponent
 	],
 	imports: [
 		BrowserModule,

@@ -93,7 +93,7 @@
 				<td>{{ licencia.apellido }}, {{ licencia.nombre }}</td>
 				<td>{{ licencia.tipoDocumento }} {{ licencia.nroDocumento }}</td>
 				<td>{{ licencia.codigoLicencia }}</td>
-				<td>{{ licencia.fechaFinVigencia | date:'mediumDate' }}</td>
+				<td>{{ licencia.fechaFinVigencia | date:'mediumDate' }}&nbsp;&nbsp;&nbsp;<button *ngIf="licencia.renovable" class="ui small button">Renovar</button><button *ngIf="!licencia.renovable" class="ui button small disabled">Renovar</button><button (click)="this.emitirCopia(this.licencia.id)" class="ui small button">Emitir copia</button></td>
 			</tr>
 		</tbody>
 	</table>
